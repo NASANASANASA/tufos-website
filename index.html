@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台灣飛碟學會 | Taiwan UFO Society</title>
+<meta name="description" content="台灣飛碟學會 — 以科學方法研究不明飛行物現象，記錄目擊事件，連結全球研究網絡。">
+<link rel="icon" type="image/png" href="images/uploads/tufos-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     RESET & VARS
+  ============================================================ */
+  :root{
+    --blue:#0B3D91;
+    --blue-dark:#06224F;
+    --red:#FC3D21;
+    --ink:#14161A;
+    --gray:#5B5F6B;
+    --gray-light:#8A8E99;
+    --line:#E2E4E9;
+    --bg:#F5F6F8;
+    --white:#fff;
+    --sans:'Noto Sans TC','Public Sans',sans-serif;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  ul{list-style:none;}
+  button{font-family:inherit;}
+
+  /* ============================================================
+     UTILITIES
+  ============================================================ */
+  .wrap{max-width:1280px;margin:0 auto;padding:0 2rem;}
+  .tag{
+    display:inline-flex;align-items:center;gap:.4rem;
+    font-size:.7rem;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;padding:.3rem .7rem;border-radius:3px;
+  }
+  .tag-red{background:var(--red);color:var(--white);}
+  .tag-blue{background:var(--blue);color:var(--white);}
+  .tag-outline{border:1px solid var(--white);color:var(--white);}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-weight:700;font-size:.92rem;
+    padding:.85rem 1.8rem;border-radius:4px;
+    border:2px solid var(--ink);cursor:pointer;
+    transition:.2s ease;background:transparent;color:var(--ink);
+  }
+  .btn-red{background:var(--red);border-color:var(--red);color:var(--white);}
+  .btn-red:hover{background:#d8330f;border-color:#d8330f;}
+  .btn-blue{background:var(--blue);border-color:var(--blue);color:var(--white);}
+  .btn-blue:hover{background:#082a6b;border-color:#082a6b;}
+  .btn-white{background:var(--white);border-color:var(--white);color:var(--ink);}
+  .btn-white:hover{background:transparent;color:var(--white);}
+  .btn-outline-white{border-color:var(--white);color:var(--white);}
+  .btn-outline-white:hover{background:var(--white);color:var(--ink);}
+  .btn:not([class*="btn-"]):hover, .btn-plain:hover{background:var(--ink);color:var(--white);}
+
+  .eyebrow{
+    font-size:.78rem;font-weight:800;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--red);margin-bottom:.7rem;
+  }
+  .section-head{margin-bottom:2.6rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;}
+  .section-head h2{font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-.01em;}
+  .section-head .link-more{font-weight:700;font-size:.92rem;border-bottom:2px solid var(--ink);padding-bottom:2px;white-space:nowrap;}
+  .section-head .link-more:hover{color:var(--blue);border-color:var(--blue);}
+
+  .section{padding:5rem 0;}
+  .section-alt{background:var(--bg);}
+
+  /* generated "photo" placeholders */
+  .ph{position:relative;overflow:hidden;background-size:cover;background-position:center;}
+  .ph::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.65) 100%);
+  }
+  .ph-nebula{background:
+    radial-gradient(circle at 30% 30%, rgba(120,90,255,.55), transparent 55%),
+    radial-gradient(circle at 75% 65%, rgba(0,180,255,.45), transparent 60%),
+    linear-gradient(135deg,#0a0e2a,#1b0f3a 60%,#04060f);}
+  .ph-aurora{background:
+    radial-gradient(circle at 70% 20%, rgba(0,255,200,.4), transparent 55%),
+    radial-gradient(circle at 20% 80%, rgba(0,120,255,.5), transparent 60%),
+    linear-gradient(160deg,#021024,#022a3a 55%,#01070f);}
+  .ph-sunset{background:
+    radial-gradient(circle at 80% 30%, rgba(255,150,60,.55), transparent 55%),
+    radial-gradient(circle at 25% 75%, rgba(255,60,60,.35), transparent 60%),
+    linear-gradient(160deg,#1a0a14,#3a1410 60%,#0a0608);}
+  .ph-deepsky{background:
+    radial-gradient(circle at 60% 40%, rgba(80,140,255,.45), transparent 55%),
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,.18), transparent 50%),
+    linear-gradient(160deg,#04102b,#0b1f4a 55%,#020611);}
+  .ph-grid{background:
+    radial-gradient(circle at 50% 50%, rgba(11,61,145,.4), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 40px),
+    linear-gradient(160deg,#06224f,#020611);}
+
+  .fade-up{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+  .fade-up.visible{opacity:1;transform:translateY(0);}
+
+  /* ============================================================
+     TOP BAR
+  ============================================================ */
+  #topbar{
+    background:var(--blue-dark);color:#cdd6ee;
+    font-size:.78rem;font-weight:500;
+  }
+  #topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:36px;}
+  #topbar a{color:#cdd6ee;transition:.2s;}
+  #topbar a:hover{color:var(--white);}
+  .topbar-left{display:flex;gap:1.5rem;}
+  .topbar-right{display:flex;gap:1.2rem;align-items:center;}
+
+  /* ============================================================
+     HEADER / NAV
+  ============================================================ */
+  #header{
+    position:sticky;top:0;z-index:1000;
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+  }
+  #header .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:84px;
+  }
+  .logo{display:flex;align-items:center;gap:.8rem;}
+  .logo img{width:46px;height:46px;}
+  .logo .logo-text{font-weight:800;font-size:1.05rem;line-height:1.25;}
+  .logo .logo-text small{display:block;font-size:.68rem;font-weight:600;letter-spacing:.1em;color:var(--gray);}
+  .nav-links{display:flex;gap:2.2rem;align-items:center;}
+  .nav-links a{font-weight:700;font-size:.92rem;padding:.4rem 0;border-bottom:3px solid transparent;transition:.2s;}
+  .nav-links a:hover{border-color:var(--red);}
+  .header-cta{display:flex;align-items:center;gap:1rem;}
+  .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+  .nav-hamburger span{width:26px;height:3px;background:var(--ink);}
+  .mobile-menu{display:none;flex-direction:column;background:var(--white);border-top:1px solid var(--line);padding:1rem 2rem 1.5rem;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:.7rem 0;font-weight:700;border-bottom:1px solid var(--line);}
+
+  /* ============================================================
+     HERO / FEATURED
+  ============================================================ */
+  #hero{height:88vh;min-height:560px;display:flex;align-items:flex-end;}
+  #hero .hero-content{padding:3.5rem 0;color:var(--white);max-width:760px;position:relative;z-index:1;}
+  #hero .tag-row{display:flex;gap:.6rem;margin-bottom:1.2rem;}
+  #hero h1{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:800;line-height:1.08;letter-spacing:-.01em;margin-bottom:1rem;}
+  #hero p{font-size:1.05rem;color:#dfe3ef;max-width:560px;margin-bottom:1.8rem;}
+  #hero .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+
+  /* ============================================================
+     TOPICS GRID
+  ============================================================ */
+  .topics-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .topic-card{
+    background:var(--white);padding:2rem 1.4rem;
+    display:flex;flex-direction:column;align-items:flex-start;gap:.8rem;
+    transition:.2s ease;cursor:pointer;min-height:160px;
+  }
+  .topic-card:hover{background:var(--blue);color:var(--white);}
+  .topic-card:hover .topic-icon{filter:brightness(0) invert(1);}
+  .topic-icon{font-size:2rem;}
+  .topic-card h4{font-size:.92rem;font-weight:700;line-height:1.4;}
+
+  /* ============================================================
+     NEWS GRID
+  ============================================================ */
+  .news-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:repeat(2,1fr);gap:1.6rem;}
+  .news-card{display:flex;flex-direction:column;text-decoration:none;}
+  .news-card .ph{border-radius:6px;margin-bottom:1rem;}
+  .news-card.large{grid-row:span 2;}
+  .news-card.large .ph{aspect-ratio:4/3;}
+  .news-card:not(.large) .ph{aspect-ratio:16/10;}
+  .news-card .tag{position:absolute;top:1rem;left:1rem;}
+  .news-card .news-date{font-size:.78rem;color:var(--gray);font-weight:600;letter-spacing:.05em;margin-bottom:.4rem;}
+  .news-card h3{font-size:1.2rem;font-weight:700;line-height:1.4;transition:.2s;}
+  .news-card.large h3{font-size:1.7rem;}
+  .news-card:hover h3{color:var(--blue);}
+  .news-card p{color:var(--gray);font-size:.9rem;margin-top:.5rem;}
+
+  /* ============================================================
+     STATS BAND
+  ============================================================ */
+  #stats{background:var(--blue);color:var(--white);}
+  #stats .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding:3.5rem 0;}
+  .stat-item{border-left:3px solid var(--red);padding-left:1.4rem;}
+  .stat-num{font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:800;line-height:1;}
+  .stat-label{font-size:.85rem;color:#c4cfeb;font-weight:600;margin-top:.5rem;letter-spacing:.04em;}
+
+  /* ============================================================
+     CASE DATABASE
+  ============================================================ */
+  .tab-row{display:flex;gap:.6rem;margin-bottom:2.4rem;flex-wrap:wrap;}
+  .tab-btn{
+    border:2px solid var(--ink);background:transparent;color:var(--ink);
+    padding:.55rem 1.3rem;border-radius:30px;font-weight:700;font-size:.85rem;cursor:pointer;transition:.2s;
+  }
+  .tab-btn.active{background:var(--ink);color:var(--white);}
+  .tab-btn:hover:not(.active){background:var(--bg);}
+  .cases-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;}
+  .case-card{background:var(--white);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:.2s;}
+  .case-card:hover{box-shadow:0 12px 28px rgba(0,0,0,.08);transform:translateY(-4px);}
+  .case-card .ph{aspect-ratio:4/3;}
+  .case-card .ph .tag{position:absolute;top:.8rem;left:.8rem;}
+  .case-body{padding:1.2rem;}
+  .case-body h3{font-size:1rem;font-weight:700;margin-bottom:.5rem;line-height:1.4;}
+  .case-body p{font-size:.85rem;color:var(--gray);margin-bottom:.9rem;}
+  .case-meta{display:flex;gap:.9rem;flex-wrap:wrap;font-size:.76rem;color:var(--gray-light);font-weight:600;}
+
+  /* ============================================================
+     REPORT FORM
+  ============================================================ */
+  .report-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start;}
+  .report-side .alert-box{
+    background:#FFF1ED;border:1px solid #FFD2C4;border-left:4px solid var(--red);
+    border-radius:4px;padding:1.2rem 1.4rem;font-size:.9rem;color:#7a2c14;
+    display:flex;gap:.8rem;margin-top:1.6rem;
+  }
+  .report-side p{color:var(--gray);margin-bottom:1rem;max-width:420px;}
+  .report-form{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:2.4rem;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-bottom:1.3rem;}
+  .form-group{display:flex;flex-direction:column;gap:.5rem;}
+  .form-group.full{grid-column:1/-1;}
+  .form-group label{font-size:.8rem;font-weight:700;color:var(--ink);}
+  .form-group input,.form-group select,.form-group textarea{
+    border:1.5px solid var(--line);border-radius:5px;
+    padding:.7rem .9rem;font-size:.92rem;font-family:inherit;color:var(--ink);
+    outline:none;transition:.2s;background:var(--white);
+  }
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(11,61,145,.12);}
+  .form-group textarea{resize:vertical;min-height:100px;}
+
+  /* ============================================================
+     MEMBERSHIP
+  ============================================================ */
+  .join-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+  .join-card{
+    background:var(--white);border:1px solid var(--line);border-radius:8px;
+    padding:2.4rem;display:flex;flex-direction:column;
+  }
+  .join-card.featured{border:2px solid var(--blue);position:relative;}
+  .join-card.featured::before{
+    content:'推薦方案';position:absolute;top:-13px;left:2rem;
+    background:var(--blue);color:var(--white);font-size:.72rem;font-weight:700;
+    padding:.25rem .8rem;border-radius:30px;letter-spacing:.05em;
+  }
+  .join-card h3{font-size:1.3rem;font-weight:800;margin-bottom:.4rem;}
+  .join-price{font-size:2.4rem;font-weight:800;margin:1rem 0 1.4rem;}
+  .join-price span{font-size:.85rem;font-weight:500;color:var(--gray);}
+  .join-card ul{margin-bottom:1.8rem;flex-grow:1;}
+  .join-card ul li{
+    font-size:.9rem;color:var(--gray);padding:.55rem 0;
+    border-top:1px solid var(--line);
+    display:flex;gap:.6rem;align-items:flex-start;
+  }
+  .join-card ul li:first-child{border-top:none;}
+  .join-card ul li::before{content:'✓';color:var(--blue);font-weight:800;}
+
+  /* ============================================================
+     FOOTER
+  ============================================================ */
+  footer{background:var(--blue-dark);color:#aebbdc;}
+  footer .footer-top{
+    display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:2.5rem;
+    padding:4rem 0 3rem;border-bottom:1px solid rgba(255,255,255,.12);
+  }
+  footer .footer-brand{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem;}
+  footer .footer-brand img{width:42px;height:42px;}
+  footer .footer-brand .ft-title{color:var(--white);font-weight:800;font-size:1.05rem;}
+  footer .footer-brand .ft-title small{display:block;font-size:.7rem;font-weight:600;letter-spacing:.08em;color:#aebbdc;}
+  footer .footer-col h5{color:var(--white);font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.1rem;}
+  footer .footer-col a{display:block;font-size:.9rem;margin-bottom:.65rem;transition:.2s;}
+  footer .footer-col a:hover{color:var(--white);}
+  footer p{font-size:.88rem;line-height:1.8;max-width:340px;}
+  .footer-bottom{
+    padding:1.5rem 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+    font-size:.8rem;
+  }
+  .social-row{display:flex;gap:.7rem;margin-top:1.2rem;}
+  .social-btn{
+    width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.25);
+    display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:.2s;
+  }
+  .social-btn:hover{background:var(--red);border-color:var(--red);}
+
+  /* ============================================================
+     RESPONSIVE
+  ============================================================ */
+  @media(max-width:1100px){
+    .topics-grid{grid-template-columns:repeat(3,1fr);}
+    .news-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+    .news-card.large{grid-row:auto;grid-column:span 2;}
+    .cases-grid{grid-template-columns:repeat(2,1fr);}
+    footer .footer-top{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:768px){
+    .wrap{padding:0 1.2rem;}
+    #topbar{display:none;}
+    .nav-links{display:none;}
+    .nav-hamburger{display:flex;}
+    .header-cta .btn span.label{display:none;}
+    .topics-grid{grid-template-columns:repeat(2,1fr);}
+    .news-grid{grid-template-columns:1fr;}
+    .news-card.large{grid-column:auto;}
+    #stats .stats-grid{grid-template-columns:1fr 1fr;gap:1.6rem;padding:2.5rem 0;}
+    .cases-grid{grid-template-columns:1fr;}
+    .report-layout{grid-template-columns:1fr;gap:2.5rem;}
+    .form-grid{grid-template-columns:1fr;}
+    .join-grid{grid-template-columns:1fr;}
+    footer .footer-top{grid-template-columns:1fr;padding:3rem 0 2rem;}
+    #hero{height:auto;min-height:640px;padding-top:6rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div id="topbar">
+  <div class="wrap">
+    <div class="topbar-left">
+      <a href="#about">學會簡介</a>
+      <a href="#join">會員專區</a>
+      <a href="mailto:info@tufos.org.tw">聯絡我們</a>
+    </div>
+    <div class="topbar-right">
+      <a href="#">中文</a>
+      <a href="#">EN</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="wrap">
+    <a href="#" class="logo">
+      <img src="images/uploads/tufos-logo.png" alt="TUFOS">
+      <span class="logo-text">台灣飛碟學會<small>TAIWAN UFO SOCIETY</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#news">最新消息</a>
+      <a href="#cases">案例資料庫</a>
+      <a href="#about">學會簡介</a>
+      <a href="#report">目擊通報</a>
+    </nav>
+    <div class="header-cta">
+      <a href="#report" class="btn btn-red"><span class="label">通報目擊</span> →</a>
+    </div>
+    <div class="nav-hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#news" onclick="closeMobile()">最新消息</a>
+    <a href="#cases" onclick="closeMobile()">案例資料庫</a>
+    <a href="#about" onclick="closeMobile()">學會簡介</a>
+    <a href="#report" onclick="closeMobile()">目擊通報</a>
+    <a href="#join" onclick="closeMobile()">加入學會</a>
+  </div>
+</header>
+
+<!-- ===== HERO / FEATURED ===== -->
+<section id="hero" class="ph ph-nebula">
+  <div class="wrap hero-content">
+    <div class="tag-row">
+      <span class="tag tag-red" id="hero-tag">焦點報導</span>
+      <span class="tag tag-outline" id="hero-date">2026.06.14</span>
+    </div>
+    <h1 id="hero-title">歡迎來到台灣飛碟學會全新官網</h1>
+    <p id="hero-desc">台灣飛碟學會自1993年成立以來，持續以科學方法記錄與分析不明飛行物目擊事件。</p>
+    <div class="hero-btns">
+      <a href="#cases" class="btn btn-white">閱讀完整報告 →</a>
+      <a href="#report" class="btn btn-outline-white">提交您的目擊</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOPICS ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <h2>探索學會資源</h2>
+    </div>
+    <div class="topics-grid fade-up">
+      <a class="topic-card" href="#cases"><span class="topic-icon">🛸</span><h4>目擊案例資料庫</h4></a>
+      <a class="topic-card" href="#report"><span class="topic-icon">📡</span><h4>目擊通報系統</h4></a>
+      <a class="topic-card" href="#news"><span class="topic-icon">📰</span><h4>研究報告與消息</h4></a>
+      <a class="topic-card" href="#about"><span class="topic-icon">🔭</span><h4>學會簡介與歷史</h4></a>
+      <a class="topic-card" href="#join"><span class="topic-icon">🎓</span><h4>會員與活動</h4></a>
+      <a class="topic-card" href="#"><span class="topic-icon">🌐</span><h4>國際解密檔案</h4></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWS ===== -->
+<section class="section section-alt" id="news">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div>
+        <div class="eyebrow">LATEST UPDATES</div>
+        <h2>最新消息</h2>
+      </div>
+      <a href="#" class="link-more">查看所有消息 →</a>
+    </div>
+    <div class="news-grid fade-up" id="news-grid"></div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section id="stats">
+  <div class="wrap">
+    <div class="stats-grid" id="stats-grid">
+      <div class="stat-item fade-up"><div class="stat-num"><span data-target="0" id="stat-members">0</span></div><div class="stat-label" id="stat-members-label">登記會員</div></div>
+      <div class="stat-item fade-up"><div class="stat-num"><span data-target="0" id="stat-cases">0</span></div><div class="stat-label" id="stat-cases-label">收錄案例</div></div>
+      <div class="stat-item fade-up"><div class="stat-num"><span data-target="0" id="stat-years">0</span></div><div class="stat-label" id="stat-years-label">年研究歷史</div></div>
+      <div class="stat-item fade-up"><div class="stat-num"><span data-target="0" id="stat-partners">0</span></div><div class="stat-label" id="stat-partners-label">國際合作機構</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div>
+        <div class="eyebrow" id="about-eyebrow">ABOUT TUFOS</div>
+        <h2 id="about-heading">關於台灣飛碟學會</h2>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:3.5rem;align-items:center;" class="fade-up">
+      <div class="ph ph-deepsky" id="about-image" style="aspect-ratio:5/4;border-radius:8px;"></div>
+      <div>
+        <p style="color:var(--gray);margin-bottom:1.2rem;" id="about-p1"></p>
+        <p style="color:var(--gray);margin-bottom:1.2rem;" id="about-p2"></p>
+        <p style="color:var(--gray-light);font-size:.85rem;margin-bottom:1.2rem;" id="about-chairs"></p>
+        <a href="#join" class="btn btn-blue">了解如何加入 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CASES ===== -->
+<section class="section section-alt" id="cases">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div>
+        <div class="eyebrow">CASE DATABASE</div>
+        <h2>目擊案例資料庫</h2>
+      </div>
+    </div>
+    <div class="tab-row fade-up">
+      <button class="tab-btn active" data-filter="all">全部案例</button>
+      <button class="tab-btn" data-filter="high">高可信度</button>
+      <button class="tab-btn" data-filter="recent">近期案例</button>
+      <button class="tab-btn" data-filter="video">影像記錄</button>
+    </div>
+    <div class="cases-grid fade-up" id="cases-grid"></div>
+  </div>
+</section>
+
+<!-- ===== REPORT ===== -->
+<section class="section" id="report">
+  <div class="wrap">
+    <div class="report-layout">
+      <div class="report-side fade-up">
+        <div class="eyebrow">REPORT A SIGHTING</div>
+        <h2 style="font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:800;margin-bottom:1rem;">目擊通報系統</h2>
+        <p>您的目擊報告對研究至關重要。所有資料將嚴格保密，僅供學會研究團隊分析使用。</p>
+        <div class="alert-box" id="report-alert" style="display:none;"></div>
+      </div>
+      <form class="report-form fade-up" onsubmit="submitReport(event)">
+        <div class="form-grid">
+          <div class="form-group"><label>目擊日期 *</label><input type="date" required></div>
+          <div class="form-group"><label>目擊時間</label><input type="time"></div>
+          <div class="form-group full"><label>目擊地點 *</label><input type="text" placeholder="縣市、鄉鎮或詳細地址" required></div>
+          <div class="form-group"><label>目擊人數</label><input type="number" placeholder="1" min="1"></div>
+          <div class="form-group">
+            <label>飛行物形狀</label>
+            <select>
+              <option value="">請選擇...</option>
+              <option>圓形 / 球形</option><option>三角形</option>
+              <option>碟形 / 飛碟形</option><option>雪茄形 / 長條形</option>
+              <option>V字形</option><option>不規則形狀</option>
+              <option>光點 / 光球</option><option>其他</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>詳細描述 *</label>
+            <textarea placeholder="請詳細描述您所目擊的現象，包括顏色、大小、移動方式、持續時間等..." required></textarea>
+          </div>
+          <div class="form-group full"><label>聯絡方式（可匿名）</label><input type="email" placeholder="您的電子郵件（選填）"></div>
+        </div>
+        <button type="submit" class="btn btn-red">提交目擊通報 →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEMBERSHIP ===== -->
+<section class="section section-alt" id="join">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div>
+        <div class="eyebrow">MEMBERSHIP</div>
+        <h2>加入學會</h2>
+      </div>
+    </div>
+    <div class="join-grid fade-up" id="join-grid"></div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <img src="images/uploads/tufos-logo.png" alt="TUFOS">
+          <div class="ft-title">台灣飛碟學會<small>TAIWAN UFO SOCIETY · EST. 1993</small></div>
+        </div>
+        <p id="footer-desc">致力於不明飛行物現象的科學研究與記錄，連結全球研究者，探索宇宙未解之謎。本網站所有資料僅供研究參考，不代表任何政治立場。</p>
+        <div class="social-row" id="social-row">
+          <a class="social-btn" href="#" title="Facebook" id="social-fb">📘</a>
+          <a class="social-btn" href="#" title="YouTube" id="social-yt">📺</a>
+          <a class="social-btn" href="#" title="Line" id="social-line">💬</a>
+          <a class="social-btn" href="mailto:info@tufos.org.tw" title="Email" id="social-email">📧</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>探索</h5>
+        <a href="#about">學會簡介</a>
+        <a href="#news">最新消息</a>
+        <a href="#cases">案例資料庫</a>
+      </div>
+      <div class="footer-col">
+        <h5>參與</h5>
+        <a href="#report">目擊通報</a>
+        <a href="#join">加入學會</a>
+        <a href="mailto:info@tufos.org.tw">聯絡我們</a>
+      </div>
+      <div class="footer-col">
+        <h5>資源</h5>
+        <a href="#">研究報告</a>
+        <a href="#">學術期刊</a>
+        <a href="#">國際合作</a>
+      </div>
+      <div class="footer-col">
+        <h5>關於</h5>
+        <a href="#">隱私政策</a>
+        <a href="#">使用條款</a>
+        <a href="#">常見問題</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 台灣飛碟學會 Taiwan UFO Society. All Rights Reserved.</div>
+      <div>EST. 1993 · 台北市</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---- Mobile menu ---- */
+function toggleMobile(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMobile(){ document.getElementById('mobileMenu').classList.remove('open'); }
+
+/* ---- Counter ---- */
+const counterObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target, target=+el.dataset.target;
+    let cur=0; const step=target/60;
+    const t=setInterval(()=>{
+      cur+=step; if(cur>=target){ cur=target; clearInterval(t); }
+      el.textContent=Math.floor(cur).toLocaleString();
+    },25);
+    counterObs.unobserve(el);
+  });
+},{threshold:.4});
+document.querySelectorAll('[data-target]').forEach(el=>counterObs.observe(el));
+
+/* ---- Content loader (reads /content/*.json so the site can be maintained via /admin) ---- */
+(async function loadContent(){
+  const fetchJson = async (path) => {
+    try{
+      const res = await fetch(path, {cache:'no-store'});
+      if(!res.ok) return null;
+      return await res.json();
+    }catch(err){ return null; }
+  };
+
+  const ph = (item) => item && item.image
+    ? `style="background-image:url('${item.image}')"`
+    : '';
+  const phClass = (item) => `ph ${item && item.background ? item.background : 'ph-grid'}`;
+
+  const [hero, about, stats, news, cases, membership, settings] = await Promise.all([
+    fetchJson('content/hero.json'),
+    fetchJson('content/about.json'),
+    fetchJson('content/stats.json'),
+    fetchJson('content/news.json'),
+    fetchJson('content/cases.json'),
+    fetchJson('content/membership.json'),
+    fetchJson('content/settings.json'),
+  ]);
+
+  /* ---- Hero ---- */
+  if(hero){
+    const heroSection = document.getElementById('hero');
+    document.getElementById('hero-tag').textContent = hero.tag || '';
+    document.getElementById('hero-date').textContent = hero.date || '';
+    document.getElementById('hero-title').innerHTML = (hero.title || '').replace(/\n/g,'<br>');
+    document.getElementById('hero-desc').textContent = hero.description || '';
+    heroSection.className = `ph ${hero.background || 'ph-nebula'}`;
+    if(hero.image){ heroSection.style.backgroundImage = `url('${hero.image}')`; }
+  }
+
+  /* ---- About ---- */
+  if(about){
+    document.getElementById('about-eyebrow').textContent = about.eyebrow || '';
+    document.getElementById('about-heading').textContent = about.heading || '';
+    document.getElementById('about-p1').textContent = about.paragraph1 || '';
+    document.getElementById('about-p2').textContent = about.paragraph2 || '';
+    document.getElementById('about-chairs').textContent = about.chairHistory || '';
+    const aboutImg = document.getElementById('about-image');
+    if(about.image){
+      aboutImg.className = '';
+      aboutImg.style.backgroundImage = `url('${about.image}')`;
+      aboutImg.style.backgroundSize = 'cover';
+      aboutImg.style.backgroundPosition = 'center';
+    }
+  }
+
+  /* ---- Stats ---- */
+  if(stats){
+    const map = [
+      ['stat-members','members','stat-members-label','memberLabel'],
+      ['stat-cases','cases','stat-cases-label','caseLabel'],
+      ['stat-years','years','stat-years-label','yearLabel'],
+      ['stat-partners','partners','stat-partners-label','partnerLabel'],
+    ];
+    map.forEach(([numId, numKey, labelId, labelKey])=>{
+      const el = document.getElementById(numId);
+      el.dataset.target = stats[numKey] || 0;
+      el.textContent = '0';
+      document.getElementById(labelId).textContent = stats[labelKey] || '';
+      counterObs.observe(el);
+    });
+  }
+
+  /* ---- News ---- */
+  if(news && Array.isArray(news.items)){
+    const grid = document.getElementById('news-grid');
+    const featured = news.items.find(n=>n.featured) || news.items[0];
+    const rest = news.items.filter(n=>n!==featured).slice(0,4);
+    const tagClass = (cat) => (cat==='國際動態' || cat==='媒體報導') ? 'tag-red' : 'tag-blue';
+    const card = (item, large) => `
+      <a class="news-card${large?' large':''}" href="#">
+        <div class="${phClass(item)}" ${ph(item)}><span class="tag ${tagClass(item.category)}">${item.category||''}</span></div>
+        <div class="news-date">${item.date||''}</div>
+        <h3>${item.title||''}</h3>
+        <p>${item.summary||''}</p>
+      </a>`;
+    let html = '';
+    if(featured) html += card(featured, true);
+    rest.forEach(item=>{ html += card(item, false); });
+    grid.innerHTML = html;
+  }
+
+  /* ---- Cases ---- */
+  if(cases && Array.isArray(cases.items)){
+    const grid = document.getElementById('cases-grid');
+    const credLabel = { high:['高可信度','tag-red'], mid:['中可信度','tag-blue'], low:['待確認','tag-blue'] };
+    grid.innerHTML = cases.items.map(item=>{
+      const [label, cls] = credLabel[item.credibility] || credLabel.low;
+      return `
+      <div class="case-card">
+        <div class="${phClass(item)}" ${ph(item)}><span class="tag ${cls}">${label}</span></div>
+        <div class="case-body">
+          <h3>${item.title||''}</h3>
+          <p>${item.summary||''}</p>
+          <div class="case-meta"><span>${item.date||''}</span><span>${item.location||''}</span><span>${item.witnesses||1}人</span></div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  /* ---- Membership ---- */
+  if(membership && Array.isArray(membership.items)){
+    const grid = document.getElementById('join-grid');
+    grid.innerHTML = membership.items.map(plan=>{
+      const benefits = (plan.benefits||[]).map(b=>`<li>${b}</li>`).join('');
+      const btnCls = plan.buttonStyle ? `btn ${plan.buttonStyle}` : 'btn';
+      const mailto = (settings && settings.email) ? `mailto:${settings.email}` : '#';
+      return `
+      <div class="join-card${plan.featured?' featured':''}">
+        <h3>${plan.name||''}</h3>
+        <div class="join-price">${plan.price||''}<span> ${plan.period||''}</span></div>
+        <ul>${benefits}</ul>
+        <a href="${mailto}" class="${btnCls}">${plan.buttonText||'聯絡我們'}</a>
+      </div>`;
+    }).join('');
+  }
+
+  /* ---- Settings (footer / report alert) ---- */
+  if(settings){
+    if(settings.footerDescription) document.getElementById('footer-desc').textContent = settings.footerDescription;
+    if(settings.facebook) document.getElementById('social-fb').href = settings.facebook;
+    if(settings.youtube) document.getElementById('social-yt').href = settings.youtube;
+    if(settings.line) document.getElementById('social-line').href = settings.line;
+    if(settings.email) document.getElementById('social-email').href = `mailto:${settings.email}`;
+
+    const alertBox = document.getElementById('report-alert');
+    if(settings.alert){
+      alertBox.style.display = 'flex';
+      alertBox.innerHTML = settings.alert;
+    }
+  }
+
+  /* ---- Re-run fade-up observer for newly injected sections ---- */
+  document.querySelectorAll('.fade-up').forEach(el=>fadeObs.observe(el));
+})();
+
+/* ---- Fade-up ---- */
+const fadeObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:.1});
+document.querySelectorAll('.fade-up').forEach(el=>fadeObs.observe(el));
+
+/* ---- Smooth scroll ---- */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+
+/* ---- Tab filter ---- */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+/* ---- Report form ---- */
+function submitReport(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('button[type="submit"]');
+  const orig=btn.textContent;
+  btn.textContent='已提交，感謝您的通報 ✓';
+  btn.style.background='var(--blue)'; btn.style.borderColor='var(--blue)';
+  setTimeout(()=>{ btn.textContent=orig; btn.style.background=''; btn.style.borderColor=''; e.target.reset(); },3500);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "items": [
+    {
+      "title": "《飛碟探索》最新一期出刊，會員可免費索閱",
+      "date": "2026.06.01",
+      "category": "學會公告",
+      "summary": "本會定期發行的《飛碟探索》雜誌最新一期已出刊，會員及全國圖書館、學校均可來信索閱，內容涵蓋近期目擊案例分析與國內外UFO研究動態。",
+      "background": "ph-deepsky",
+      "image": "",
+      "featured": true
+    },
+    {
+      "title": "七星山金字塔考察活動報名開始",
+      "date": "2026.05.20",
+      "category": "活動預告",
+      "summary": "本會將再次組隊前往七星山進行地質與歷史考察，歡迎會員報名參加，詳情請見學會活動頁面。",
+      "background": "ph-aurora",
+      "image": "",
+      "featured": false
+    },
+    {
+      "title": "學會講座：UFO目擊案例科學分析方法",
+      "date": "2026.05.10",
+      "category": "活動預告",
+      "summary": "本會邀請資深研究員主講，介紹目擊案例蒐證與分析的基本方法，適合對UFO研究感興趣的新會員參加。",
+      "background": "ph-sunset",
+      "image": "",
+      "featured": false
+    },
+    {
+      "title": "學會官方網站全新改版上線",
+      "date": "2026.04.15",
+      "category": "學會公告",
+      "summary": "為提供會員與民眾更完整的資訊，本會官網進行全新改版，新增目擊通報系統與案例資料庫，歡迎多加利用。",
+      "background": "ph-grid",
+      "image": "",
+      "featured": false
+    },
+    {
+      "title": "媒體報導：解讀台灣UFO目擊熱點",
+      "date": "2026.03.22",
+      "category": "媒體報導",
+      "summary": "本會研究員接受媒體專訪，分享多年觀測經驗與案例分析方法，提醒民眾如有目擊可透過本會通報系統提交資料。",
+      "background": "ph-nebula",
+      "image": "",
+      "featured": false
+    }
+  ]
+}

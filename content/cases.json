@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "title": "台東海岸發光體事件",
+      "date": "2024.11.28",
+      "location": "台東縣",
+      "witnesses": 12,
+      "credibility": "high",
+      "summary": "多名目擊者同時目擊橘色發光體於海面上方懸停約20分鐘。",
+      "background": "ph-sunset",
+      "image": ""
+    },
+    {
+      "title": "桃園機場附近三角形飛行物",
+      "date": "2024.10.15",
+      "location": "桃園市",
+      "witnesses": 3,
+      "credibility": "mid",
+      "summary": "機師回報飛行途中目擊三角形無聲飛行物。",
+      "background": "ph-deepsky",
+      "image": ""
+    },
+    {
+      "title": "陽明山連續目擊事件",
+      "date": "2024.09.03",
+      "location": "台北市",
+      "witnesses": 8,
+      "credibility": "high",
+      "summary": "連續三夜目擊相同形狀發光體，並成功拍攝到影像。",
+      "background": "ph-aurora",
+      "image": ""
+    },
+    {
+      "title": "花蓮山區圓形壓痕事件",
+      "date": "2024.08.20",
+      "location": "花蓮縣",
+      "witnesses": 1,
+      "credibility": "low",
+      "summary": "農民發現直徑約15公尺的完整圓形壓痕，樣本送驗中。",
+      "background": "ph-grid",
+      "image": ""
+    }
+  ]
+}

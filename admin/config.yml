@@ -1,0 +1,184 @@
+# ============================================================
+# Decap CMS 設定檔
+# 台灣飛碟學會官網（NASA風格版）內容管理系統
+# ============================================================
+
+backend:
+  name: git-gateway          # 透過 Netlify Identity + Git Gateway 認證
+  branch: main               # 對應 GitHub 倉庫的主分支
+
+# 媒體（照片）上傳路徑
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# 網站預覽網址（部署後填寫你的 Netlify 網域）
+# site_url: https://your-site.netlify.app
+
+# ============================================================
+# 內容集合定義
+# ============================================================
+collections:
+
+  # ----------------------------------------------------------
+  # 1. 首頁主視覺 / 焦點報導
+  # ----------------------------------------------------------
+  - name: "hero"
+    label: "🛸 首頁焦點報導"
+    files:
+      - label: "焦點報導內容"
+        name: "hero"
+        file: "content/hero.json"
+        fields:
+          - { label: "標籤文字", name: "tag", widget: "string", default: "焦點報導" }
+          - { label: "日期", name: "date", widget: "string", hint: "例：2026.06.14" }
+          - { label: "標題", name: "title", widget: "string" }
+          - { label: "說明文字", name: "description", widget: "text" }
+          - { label: "背景樣式", name: "background", widget: "select",
+              options: ["ph-nebula", "ph-aurora", "ph-sunset", "ph-deepsky", "ph-grid"],
+              hint: "尚未上傳照片時顯示的背景漸層樣式" }
+          - { label: "背景照片", name: "image", widget: "image", required: false,
+              hint: "上傳後將取代背景漸層樣式" }
+
+  # ----------------------------------------------------------
+  # 2. 學會簡介
+  # ----------------------------------------------------------
+  - name: "about"
+    label: "📖 學會簡介"
+    files:
+      - label: "學會簡介內容"
+        name: "about"
+        file: "content/about.json"
+        fields:
+          - { label: "小標題", name: "eyebrow", widget: "string", default: "ABOUT TUFOS" }
+          - { label: "標題", name: "heading", widget: "string", default: "關於台灣飛碟學會" }
+          - { label: "簡介段落一", name: "paragraph1", widget: "text" }
+          - { label: "簡介段落二", name: "paragraph2", widget: "text" }
+          - { label: "成立年份", name: "founded", widget: "number" }
+          - { label: "歷任理事長", name: "chairHistory", widget: "string", required: false }
+          - { label: "學會照片", name: "image", widget: "image", required: false,
+              hint: "上傳後將顯示在簡介旁，未上傳則顯示背景漸層樣式" }
+
+  # ----------------------------------------------------------
+  # 3. 統計數字
+  # ----------------------------------------------------------
+  - name: "stats"
+    label: "📊 統計數字"
+    files:
+      - label: "首頁統計數字"
+        name: "stats"
+        file: "content/stats.json"
+        fields:
+          - { label: "會員數字", name: "members", widget: "number" }
+          - { label: "會員數字標籤", name: "memberLabel", widget: "string" }
+          - { label: "案例數字", name: "cases", widget: "number" }
+          - { label: "案例數字標籤", name: "caseLabel", widget: "string" }
+          - { label: "年資數字", name: "years", widget: "number" }
+          - { label: "年資數字標籤", name: "yearLabel", widget: "string" }
+          - { label: "合作機構數字", name: "partners", widget: "number" }
+          - { label: "合作機構標籤", name: "partnerLabel", widget: "string" }
+
+  # ----------------------------------------------------------
+  # 4. 最新消息
+  # ----------------------------------------------------------
+  - name: "news"
+    label: "📰 最新消息"
+    files:
+      - label: "最新消息列表"
+        name: "news"
+        file: "content/news.json"
+        fields:
+          - label: "消息列表"
+            name: "items"
+            widget: "list"
+            label_key: "title"
+            fields:
+              - { label: "標題", name: "title", widget: "string" }
+              - { label: "日期", name: "date", widget: "string", hint: "例：2026.06.01" }
+              - { label: "分類", name: "category", widget: "select",
+                  options: ["研究報告", "活動預告", "國際動態", "學會公告", "媒體報導"] }
+              - { label: "摘要", name: "summary", widget: "text" }
+              - { label: "背景樣式", name: "background", widget: "select",
+                  options: ["ph-nebula", "ph-aurora", "ph-sunset", "ph-deepsky", "ph-grid"],
+                  hint: "尚未上傳照片時顯示的背景漸層樣式" }
+              - { label: "照片", name: "image", widget: "image", required: false,
+                  hint: "上傳後將取代背景漸層樣式" }
+              - { label: "置頂顯示", name: "featured", widget: "boolean", default: false,
+                  hint: "開啟後此消息將顯示在最上方大圖區塊" }
+
+  # ----------------------------------------------------------
+  # 5. 目擊案例資料庫
+  # ----------------------------------------------------------
+  - name: "cases"
+    label: "🔭 目擊案例資料庫"
+    files:
+      - label: "案例列表"
+        name: "cases"
+        file: "content/cases.json"
+        fields:
+          - label: "案例列表"
+            name: "items"
+            widget: "list"
+            label_key: "title"
+            fields:
+              - { label: "案例標題", name: "title", widget: "string" }
+              - { label: "目擊日期", name: "date", widget: "string", hint: "例：2024.11.28" }
+              - { label: "目擊地點", name: "location", widget: "string" }
+              - { label: "目擊人數", name: "witnesses", widget: "number", default: 1 }
+              - { label: "可信度", name: "credibility", widget: "select",
+                  options:
+                    - { label: "🔴 高可信度", value: "high" }
+                    - { label: "🟡 中可信度", value: "mid" }
+                    - { label: "🟢 待確認", value: "low" } }
+              - { label: "案例摘要", name: "summary", widget: "text" }
+              - { label: "背景樣式", name: "background", widget: "select",
+                  options: ["ph-nebula", "ph-aurora", "ph-sunset", "ph-deepsky", "ph-grid"],
+                  hint: "尚未上傳照片時顯示的背景漸層樣式" }
+              - { label: "照片", name: "image", widget: "image", required: false,
+                  hint: "上傳後將取代背景漸層樣式" }
+
+  # ----------------------------------------------------------
+  # 6. 會員方案
+  # ----------------------------------------------------------
+  - name: "membership"
+    label: "🎓 會員方案"
+    files:
+      - label: "會員方案列表"
+        name: "membership"
+        file: "content/membership.json"
+        fields:
+          - label: "方案列表"
+            name: "items"
+            widget: "list"
+            label_key: "name"
+            fields:
+              - { label: "方案名稱", name: "name", widget: "string" }
+              - { label: "價格", name: "price", widget: "string" }
+              - { label: "計價單位", name: "period", widget: "string", default: "/ 年" }
+              - { label: "推薦方案", name: "featured", widget: "boolean", default: false }
+              - label: "權益內容"
+                name: "benefits"
+                widget: "list"
+                field: { label: "權益項目", name: "benefit", widget: "string" }
+              - { label: "按鈕文字", name: "buttonText", widget: "string" }
+              - { label: "按鈕樣式", name: "buttonStyle", widget: "select",
+                  options: ["", "btn-blue", "btn-red"], required: false }
+
+  # ----------------------------------------------------------
+  # 7. 網站設定
+  # ----------------------------------------------------------
+  - name: "settings"
+    label: "⚙️ 網站設定"
+    files:
+      - label: "聯絡資訊與社群連結"
+        name: "settings"
+        file: "content/settings.json"
+        fields:
+          - { label: "聯絡信箱", name: "email", widget: "string" }
+          - { label: "Facebook 官方帳號", name: "facebook", widget: "string", required: false }
+          - { label: "Facebook 粉絲專頁", name: "facebookAlt", widget: "string", required: false }
+          - { label: "YouTube 連結", name: "youtube", widget: "string", required: false }
+          - { label: "Line 連結", name: "line", widget: "string", required: false }
+          - { label: "官方網站", name: "officialSite", widget: "string", required: false }
+          - { label: "頁尾簡介文字", name: "footerDescription", widget: "text" }
+          - { label: "目擊通報區公告", name: "alert", widget: "text", required: false,
+              hint: "顯示在「目擊通報系統」區塊的提示文字，留空則不顯示" }
