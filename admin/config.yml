@@ -11,8 +11,8 @@ backend:
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-# 網站預覽網址（部署後填寫你的 Netlify 網域）
-# site_url: https://your-site.netlify.app
+# 網站預覽網址
+site_url: https://kaleidoscopic-tiramisu-7502e9.netlify.app
 
 # ============================================================
 # 內容集合定義
