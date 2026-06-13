@@ -5,27 +5,53 @@
       "price": "免費",
       "period": "/ 年",
       "featured": false,
-      "benefits": ["電子會訊訂閱", "公開活動參與", "基本案例查閱", "目擊通報提交"],
+      "benefits": [
+        "電子會訊訂閱",
+        "公開活動參與",
+        "基本案例查閱",
+        "目擊通報提交"
+      ],
       "buttonText": "立即申請",
-      "buttonStyle": ""
+      "buttonStyle": "",
+      "name_en": "",
+      "benefits_en": [],
+      "buttonText_en": ""
     },
     {
       "name": "正式會員",
       "price": "NT$600",
       "period": "/ 年",
       "featured": true,
-      "benefits": ["所有一般會員權益", "完整案例資料庫", "《飛碟探索》雜誌索閱", "活動優先報名", "會員專屬論壇"],
+      "benefits": [
+        "所有一般會員權益",
+        "完整案例資料庫",
+        "《飛碟探索》雜誌索閱",
+        "活動優先報名",
+        "會員專屬論壇"
+      ],
       "buttonText": "立即加入",
-      "buttonStyle": "btn-blue"
+      "buttonStyle": "btn-blue",
+      "name_en": "",
+      "benefits_en": [],
+      "buttonText_en": ""
     },
     {
       "name": "贊助會員",
       "price": "NT$3000",
       "period": "/ 年",
       "featured": false,
-      "benefits": ["所有正式會員權益", "研究計畫參與", "年度大會演講席位", "個人研究支援", "國際交流優先"],
+      "benefits": [
+        "所有正式會員權益",
+        "研究計畫參與",
+        "年度大會演講席位",
+        "個人研究支援",
+        "國際交流優先"
+      ],
       "buttonText": "聯絡我們",
-      "buttonStyle": ""
+      "buttonStyle": "",
+      "name_en": "",
+      "benefits_en": [],
+      "buttonText_en": ""
     }
   ]
 }

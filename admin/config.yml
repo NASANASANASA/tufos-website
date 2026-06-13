@@ -38,6 +38,12 @@ collections:
               hint: "尚未上傳照片時顯示的背景漸層樣式" }
           - { label: "背景照片", name: "image", widget: "image", required: false,
               hint: "上傳後將取代背景漸層樣式" }
+          - { label: "標籤文字（英文）", name: "tag_en", widget: "string", required: false,
+              hint: "留空時英文版會自動翻譯" }
+          - { label: "標題（英文）", name: "title_en", widget: "string", required: false,
+              hint: "留空時英文版會自動翻譯" }
+          - { label: "說明文字（英文）", name: "description_en", widget: "text", required: false,
+              hint: "留空時英文版會自動翻譯" }
 
   # ----------------------------------------------------------
   # 2. 學會簡介
@@ -57,6 +63,12 @@ collections:
           - { label: "歷任理事長", name: "chairHistory", widget: "string", required: false }
           - { label: "學會照片", name: "image", widget: "image", required: false,
               hint: "上傳後將顯示在簡介旁，未上傳則顯示背景漸層樣式" }
+          - { label: "標題（英文）", name: "heading_en", widget: "string", required: false,
+              hint: "留空時英文版會自動翻譯" }
+          - { label: "簡介段落一（英文）", name: "paragraph1_en", widget: "text", required: false,
+              hint: "留空時英文版會自動翻譯" }
+          - { label: "簡介段落二（英文）", name: "paragraph2_en", widget: "text", required: false,
+              hint: "留空時英文版會自動翻譯" }
 
   # ----------------------------------------------------------
   # 3. 統計數字
@@ -76,6 +88,14 @@ collections:
           - { label: "年資數字標籤", name: "yearLabel", widget: "string" }
           - { label: "合作機構數字", name: "partners", widget: "number" }
           - { label: "合作機構標籤", name: "partnerLabel", widget: "string" }
+          - { label: "會員數字標籤（英文）", name: "memberLabel_en", widget: "string", required: false,
+              hint: "留空時英文版會自動翻譯" }
+          - { label: "案例數字標籤（英文）", name: "caseLabel_en", widget: "string", required: false,
+              hint: "留空時英文版會自動翻譯" }
+          - { label: "年資數字標籤（英文）", name: "yearLabel_en", widget: "string", required: false,
+              hint: "留空時英文版會自動翻譯" }
+          - { label: "合作機構標籤（英文）", name: "partnerLabel_en", widget: "string", required: false,
+              hint: "留空時英文版會自動翻譯" }
 
   # ----------------------------------------------------------
   # 4. 最新消息
@@ -104,6 +124,10 @@ collections:
                   hint: "上傳後將取代背景漸層樣式" }
               - { label: "置頂顯示", name: "featured", widget: "boolean", default: false,
                   hint: "開啟後此消息將顯示在最上方大圖區塊" }
+              - { label: "標題（英文）", name: "title_en", widget: "string", required: false,
+                  hint: "留空時英文版會自動翻譯" }
+              - { label: "摘要（英文）", name: "summary_en", widget: "text", required: false,
+                  hint: "留空時英文版會自動翻譯" }
 
   # ----------------------------------------------------------
   # 5. 目擊案例資料庫
@@ -140,6 +164,12 @@ collections:
                   hint: "尚未上傳照片時顯示的背景漸層樣式" }
               - { label: "照片", name: "image", widget: "image", required: false,
                   hint: "上傳後將取代背景漸層樣式" }
+              - { label: "案例標題（英文）", name: "title_en", widget: "string", required: false,
+                  hint: "留空時英文版會自動翻譯" }
+              - { label: "案例摘要（英文）", name: "summary_en", widget: "text", required: false,
+                  hint: "留空時英文版會自動翻譯" }
+              - { label: "目擊地點（英文）", name: "location_en", widget: "string", required: false,
+                  hint: "留空時英文版會自動翻譯" }
 
   # ----------------------------------------------------------
   # 6. 會員方案
@@ -167,6 +197,16 @@ collections:
               - { label: "按鈕文字", name: "buttonText", widget: "string" }
               - { label: "按鈕樣式", name: "buttonStyle", widget: "select",
                   options: ["", "btn-blue", "btn-red"], required: false }
+              - { label: "方案名稱（英文）", name: "name_en", widget: "string", required: false,
+                  hint: "留空時英文版會自動翻譯" }
+              - label: "權益內容（英文）"
+                name: "benefits_en"
+                widget: "list"
+                required: false
+                hint: "留空時英文版會自動翻譯"
+                field: { label: "權益項目（英文）", name: "benefit", widget: "string" }
+              - { label: "按鈕文字（英文）", name: "buttonText_en", widget: "string", required: false,
+                  hint: "留空時英文版會自動翻譯" }
 
   # ----------------------------------------------------------
   # 7. 網站設定
@@ -187,3 +227,7 @@ collections:
           - { label: "頁尾簡介文字", name: "footerDescription", widget: "text" }
           - { label: "目擊通報區公告", name: "alert", widget: "text", required: false,
               hint: "顯示在「目擊通報系統」區塊的提示文字，留空則不顯示" }
+          - { label: "頁尾簡介文字（英文）", name: "footerDescription_en", widget: "text", required: false,
+              hint: "留空時英文版會自動翻譯" }
+          - { label: "目擊通報區公告（英文）", name: "alert_en", widget: "text", required: false,
+              hint: "留空時英文版會自動翻譯" }

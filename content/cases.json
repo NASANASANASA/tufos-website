@@ -8,7 +8,10 @@
       "credibility": "high",
       "summary": "多名目擊者同時目擊橘色發光體於海面上方懸停約20分鐘。",
       "background": "ph-sunset",
-      "image": ""
+      "image": "",
+      "title_en": "",
+      "summary_en": "",
+      "location_en": ""
     },
     {
       "title": "桃園機場附近三角形飛行物",
@@ -18,7 +21,10 @@
       "credibility": "mid",
       "summary": "機師回報飛行途中目擊三角形無聲飛行物。",
       "background": "ph-deepsky",
-      "image": ""
+      "image": "",
+      "title_en": "",
+      "summary_en": "",
+      "location_en": ""
     },
     {
       "title": "陽明山連續目擊事件",
@@ -28,7 +34,10 @@
       "credibility": "high",
       "summary": "連續三夜目擊相同形狀發光體，並成功拍攝到影像。",
       "background": "ph-aurora",
-      "image": ""
+      "image": "",
+      "title_en": "",
+      "summary_en": "",
+      "location_en": ""
     },
     {
       "title": "花蓮山區圓形壓痕事件",
@@ -38,7 +47,10 @@
       "credibility": "low",
       "summary": "農民發現直徑約15公尺的完整圓形壓痕，樣本送驗中。",
       "background": "ph-grid",
-      "image": ""
+      "image": "",
+      "title_en": "",
+      "summary_en": "",
+      "location_en": ""
     }
   ]
 }
