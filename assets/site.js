@@ -233,8 +233,6 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
     const footerDesc = await field(settings,'footerDescription');
     if(footerDesc) document.getElementById('footer-desc').textContent = footerDesc;
     if(settings.facebook) document.getElementById('social-fb').href = settings.facebook;
-    if(settings.youtube) document.getElementById('social-yt').href = settings.youtube;
-    if(settings.line) document.getElementById('social-line').href = settings.line;
     if(settings.email) document.getElementById('social-email').href = `mailto:${settings.email}`;
 
     const alertBox = document.getElementById('report-alert');
