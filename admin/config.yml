@@ -124,11 +124,16 @@ collections:
               - { label: "目擊日期", name: "date", widget: "string", hint: "例：2024.11.28" }
               - { label: "目擊地點", name: "location", widget: "string" }
               - { label: "目擊人數", name: "witnesses", widget: "number", default: 1 }
-              - { label: "可信度", name: "credibility", widget: "select",
-                  options:
-                    - { label: "🔴 高可信度", value: "high" }
-                    - { label: "🟡 中可信度", value: "mid" }
-                    - { label: "🟢 待確認", value: "low" } }
+              - label: "可信度"
+                name: "credibility"
+                widget: "select"
+                options:
+                  - label: "🔴 高可信度"
+                    value: "high"
+                  - label: "🟡 中可信度"
+                    value: "mid"
+                  - label: "🟢 待確認"
+                    value: "low"
               - { label: "案例摘要", name: "summary", widget: "text" }
               - { label: "背景樣式", name: "background", widget: "select",
                   options: ["ph-nebula", "ph-aurora", "ph-sunset", "ph-deepsky", "ph-grid"],
