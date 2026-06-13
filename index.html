@@ -188,7 +188,8 @@
   .news-card h3{font-size:1.2rem;font-weight:700;line-height:1.4;transition:.2s;}
   .news-card.large h3{font-size:1.7rem;}
   .news-card:hover h3{color:var(--blue);}
-  .news-card p{color:var(--gray);font-size:.9rem;margin-top:.5rem;}
+  .news-card p{color:var(--gray);font-size:.9rem;margin-top:.5rem;white-space:pre-line;}
+  .news-card.large p{max-height:14rem;overflow:auto;}
 
   /* ============================================================
      STATS BAND
@@ -216,7 +217,7 @@
   .case-card .ph .tag{position:absolute;top:.8rem;left:.8rem;}
   .case-body{padding:1.2rem;}
   .case-body h3{font-size:1rem;font-weight:700;margin-bottom:.5rem;line-height:1.4;}
-  .case-body p{font-size:.85rem;color:var(--gray);margin-bottom:.9rem;}
+  .case-body p{font-size:.85rem;color:var(--gray);margin-bottom:.9rem;white-space:pre-line;}
   .case-meta{display:flex;gap:.9rem;flex-wrap:wrap;font-size:.76rem;color:var(--gray-light);font-weight:600;}
 
   /* ============================================================
@@ -597,10 +598,13 @@ document.querySelectorAll('[data-target]').forEach(el=>counterObs.observe(el));
     }catch(err){ return null; }
   };
 
+  /* 有照片時只套用 .ph（避免與 .ph-* 漸層樣式的 background 簡寫衝突），並補上完整的背景屬性 */
   const ph = (item) => item && item.image
-    ? `style="background-image:url('${item.image}')"`
+    ? `style="background-image:url('${item.image}');background-size:cover;background-position:center;background-repeat:no-repeat;"`
     : '';
-  const phClass = (item) => `ph ${item && item.background ? item.background : 'ph-grid'}`;
+  const phClass = (item) => item && item.image
+    ? 'ph'
+    : `ph ${item && item.background ? item.background : 'ph-grid'}`;
 
   const [hero, about, stats, news, cases, membership, settings] = await Promise.all([
     fetchJson('content/hero.json'),
@@ -619,8 +623,15 @@ document.querySelectorAll('[data-target]').forEach(el=>counterObs.observe(el));
     document.getElementById('hero-date').textContent = hero.date || '';
     document.getElementById('hero-title').innerHTML = (hero.title || '').replace(/\n/g,'<br>');
     document.getElementById('hero-desc').textContent = hero.description || '';
-    heroSection.className = `ph ${hero.background || 'ph-nebula'}`;
-    if(hero.image){ heroSection.style.backgroundImage = `url('${hero.image}')`; }
+    if(hero.image){
+      heroSection.className = 'ph';
+      heroSection.style.backgroundImage = `url('${hero.image}')`;
+      heroSection.style.backgroundSize = 'cover';
+      heroSection.style.backgroundPosition = 'center';
+      heroSection.style.backgroundRepeat = 'no-repeat';
+    } else {
+      heroSection.className = `ph ${hero.background || 'ph-nebula'}`;
+    }
   }
 
   /* ---- About ---- */
