@@ -9,6 +9,30 @@ const SITE_LANG = window.SITE_LANG || 'zh';
 function toggleMobile(){ document.getElementById('mobileMenu').classList.toggle('open'); }
 function closeMobile(){ document.getElementById('mobileMenu').classList.remove('open'); }
 
+/* ---- Hero：滑鼠光暈 + 流星拖尾效果 ---- */
+(function(){
+  const hero = document.getElementById('hero');
+  const meteorBox = document.getElementById('hero-meteors');
+  if(!hero || !meteorBox) return;
+  let lastMeteor = 0;
+  hero.addEventListener('mousemove', e=>{
+    const rect = hero.getBoundingClientRect();
+    const x = e.clientX - rect.left, y = e.clientY - rect.top;
+    hero.style.setProperty('--mx', x + 'px');
+    hero.style.setProperty('--my', y + 'px');
+
+    const now = Date.now();
+    if(now - lastMeteor < 60) return;
+    lastMeteor = now;
+    const meteor = document.createElement('span');
+    meteor.className = 'meteor';
+    meteor.style.left = x + 'px';
+    meteor.style.top = y + 'px';
+    meteorBox.appendChild(meteor);
+    meteor.addEventListener('animationend', ()=> meteor.remove());
+  });
+})();
+
 /* ---- Counter ---- */
 const counterObs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{
