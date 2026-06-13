@@ -242,6 +242,14 @@
   }
   .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(11,61,145,.12);}
   .form-group textarea{resize:vertical;min-height:100px;}
+  .file-input-wrap{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;}
+  .file-input-btn{
+    border:1.5px solid var(--line);border-radius:5px;
+    padding:.7rem 1.2rem;font-size:.85rem;font-weight:700;color:var(--ink);
+    background:var(--bg);cursor:pointer;transition:.2s;white-space:nowrap;
+  }
+  .file-input-btn:hover{border-color:var(--blue);color:var(--blue);}
+  .file-input-name{font-size:.85rem;color:var(--gray);}
 
   /* ============================================================
      MEMBERSHIP
@@ -503,7 +511,11 @@
           <div class="form-group full"><label>聯絡方式（可匿名）</label><input type="email" name="contact" placeholder="您的電子郵件（選填）"></div>
           <div class="form-group full">
             <label>相關照片或影片（選填）</label>
-            <input type="file" name="attachment" accept="image/*,video/*" multiple>
+            <div class="file-input-wrap">
+              <label class="file-input-btn" for="attachment-input">選擇檔案</label>
+              <span class="file-input-name" id="attachment-name">未選擇任何檔案</span>
+            </div>
+            <input type="file" id="attachment-input" name="attachment" accept="image/*,video/*" multiple style="display:none;" onchange="updateFileName(this)">
             <small style="display:block;color:var(--gray);margin-top:.4rem;">單個檔案請小於 8MB；如檔案較大（例如完整影片），請改在「詳細描述」中提供雲端連結（Google Drive、YouTube 等）。</small>
           </div>
         </div>
@@ -770,6 +782,14 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
 });
 
 /* ---- Report form ---- */
+function updateFileName(input){
+  const nameEl=document.getElementById('attachment-name');
+  if(!nameEl) return;
+  if(input.files.length===0){ nameEl.textContent='未選擇任何檔案'; }
+  else if(input.files.length===1){ nameEl.textContent=input.files[0].name; }
+  else{ nameEl.textContent=`已選擇 ${input.files.length} 個檔案`; }
+}
+
 function submitReport(e){
   e.preventDefault();
   const form=e.target;
@@ -796,6 +816,8 @@ function submitReport(e){
       btn.textContent='已提交，感謝您的通報 ✓';
       btn.style.background='var(--blue)'; btn.style.borderColor='var(--blue)';
       form.reset();
+      const nameEl=document.getElementById('attachment-name');
+      if(nameEl) nameEl.textContent='未選擇任何檔案';
     })
     .catch(()=>{
       if(alertBox){ alertBox.textContent='⚠️ 提交失敗，請稍後再試或直接以 Email 與我們聯繫。'; alertBox.style.display='block'; }
