@@ -96,6 +96,12 @@
     repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 40px),
     repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 40px),
     linear-gradient(160deg,#06224f,#020611);}
+  .ph-tech{background:
+    radial-gradient(circle at 80% 20%, rgba(64,140,255,.30), transparent 45%),
+    radial-gradient(circle at 15% 85%, rgba(120,90,255,.18), transparent 50%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 64px),
+    linear-gradient(135deg,#050a1e,#0a1330 55%,#02050f);}
 
   .fade-up{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
   .fade-up.visible{opacity:1;transform:translateY(0);}

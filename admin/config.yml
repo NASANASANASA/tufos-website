@@ -34,7 +34,7 @@ collections:
           - { label: "標題", name: "title", widget: "string" }
           - { label: "說明文字", name: "description", widget: "text" }
           - { label: "背景樣式", name: "background", widget: "select",
-              options: ["ph-nebula", "ph-aurora", "ph-sunset", "ph-deepsky", "ph-grid"],
+              options: ["ph-nebula", "ph-aurora", "ph-sunset", "ph-deepsky", "ph-grid", "ph-tech"],
               hint: "尚未上傳照片時顯示的背景漸層樣式" }
           - { label: "背景照片", name: "image", widget: "image", required: false,
               hint: "上傳後將取代背景漸層樣式" }
@@ -118,7 +118,7 @@ collections:
                   options: ["研究報告", "活動預告", "國際動態", "學會公告", "媒體報導"] }
               - { label: "摘要", name: "summary", widget: "text" }
               - { label: "背景樣式", name: "background", widget: "select",
-                  options: ["ph-nebula", "ph-aurora", "ph-sunset", "ph-deepsky", "ph-grid"],
+                  options: ["ph-nebula", "ph-aurora", "ph-sunset", "ph-deepsky", "ph-grid", "ph-tech"],
                   hint: "尚未上傳照片時顯示的背景漸層樣式" }
               - { label: "照片", name: "image", widget: "image", required: false,
                   hint: "上傳後將取代背景漸層樣式" }
@@ -160,7 +160,7 @@ collections:
                     value: "low"
               - { label: "案例摘要", name: "summary", widget: "text" }
               - { label: "背景樣式", name: "background", widget: "select",
-                  options: ["ph-nebula", "ph-aurora", "ph-sunset", "ph-deepsky", "ph-grid"],
+                  options: ["ph-nebula", "ph-aurora", "ph-sunset", "ph-deepsky", "ph-grid", "ph-tech"],
                   hint: "尚未上傳照片時顯示的背景漸層樣式" }
               - { label: "照片", name: "image", widget: "image", required: false,
                   hint: "上傳後將取代背景漸層樣式" }
