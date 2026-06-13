@@ -761,5 +761,13 @@ function submitReport(e){
   setTimeout(()=>{ btn.textContent=orig; btn.style.background=''; btn.style.borderColor=''; e.target.reset(); },3500);
 }
 </script>
+<!-- Netlify Identity：用於處理後台邀請/重設密碼連結 -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {});
+    window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+  }
+</script>
 </body>
 </html>
