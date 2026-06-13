@@ -478,15 +478,17 @@
         <p>您的目擊報告對研究至關重要。所有資料將嚴格保密，僅供學會研究團隊分析使用。</p>
         <div class="alert-box" id="report-alert" style="display:none;"></div>
       </div>
-      <form class="report-form fade-up" onsubmit="submitReport(event)">
+      <form class="report-form fade-up" name="ufo-report" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="submitReport(event)">
+        <input type="hidden" name="form-name" value="ufo-report">
+        <p style="display:none;"><label>不要填寫這欄：<input name="bot-field"></label></p>
         <div class="form-grid">
-          <div class="form-group"><label>目擊日期 *</label><input type="date" required></div>
-          <div class="form-group"><label>目擊時間</label><input type="time"></div>
-          <div class="form-group full"><label>目擊地點 *</label><input type="text" placeholder="縣市、鄉鎮或詳細地址" required></div>
-          <div class="form-group"><label>目擊人數</label><input type="number" placeholder="1" min="1"></div>
+          <div class="form-group"><label>目擊日期 *</label><input type="date" name="date" required></div>
+          <div class="form-group"><label>目擊時間</label><input type="time" name="time"></div>
+          <div class="form-group full"><label>目擊地點 *</label><input type="text" name="location" placeholder="縣市、鄉鎮或詳細地址" required></div>
+          <div class="form-group"><label>目擊人數</label><input type="number" name="witnesses" placeholder="1" min="1"></div>
           <div class="form-group">
             <label>飛行物形狀</label>
-            <select>
+            <select name="shape">
               <option value="">請選擇...</option>
               <option>圓形 / 球形</option><option>三角形</option>
               <option>碟形 / 飛碟形</option><option>雪茄形 / 長條形</option>
@@ -496,9 +498,9 @@
           </div>
           <div class="form-group full">
             <label>詳細描述 *</label>
-            <textarea placeholder="請詳細描述您所目擊的現象，包括顏色、大小、移動方式、持續時間等..." required></textarea>
+            <textarea name="description" placeholder="請詳細描述您所目擊的現象，包括顏色、大小、移動方式、持續時間等..." required></textarea>
           </div>
-          <div class="form-group full"><label>聯絡方式（可匿名）</label><input type="email" placeholder="您的電子郵件（選填）"></div>
+          <div class="form-group full"><label>聯絡方式（可匿名）</label><input type="email" name="contact" placeholder="您的電子郵件（選填）"></div>
         </div>
         <button type="submit" class="btn btn-red">提交目擊通報 →</button>
       </form>
@@ -765,11 +767,27 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
 /* ---- Report form ---- */
 function submitReport(e){
   e.preventDefault();
-  const btn=e.target.querySelector('button[type="submit"]');
+  const form=e.target;
+  const btn=form.querySelector('button[type="submit"]');
   const orig=btn.textContent;
-  btn.textContent='已提交，感謝您的通報 ✓';
-  btn.style.background='var(--blue)'; btn.style.borderColor='var(--blue)';
-  setTimeout(()=>{ btn.textContent=orig; btn.style.background=''; btn.style.borderColor=''; e.target.reset(); },3500);
+  const alertBox=document.getElementById('report-alert');
+  btn.disabled=true;
+  btn.textContent='送出中...';
+  const data=new URLSearchParams(new FormData(form)).toString();
+  fetch('/', { method:'POST', headers:{ 'Content-Type':'application/x-www-form-urlencoded' }, body:data })
+    .then(res=>{
+      if(!res.ok) throw new Error('提交失敗');
+      btn.textContent='已提交，感謝您的通報 ✓';
+      btn.style.background='var(--blue)'; btn.style.borderColor='var(--blue)';
+      form.reset();
+    })
+    .catch(()=>{
+      if(alertBox){ alertBox.textContent='⚠️ 提交失敗，請稍後再試或直接以 Email 與我們聯繫。'; alertBox.style.display='block'; }
+    })
+    .finally(()=>{
+      btn.disabled=false;
+      setTimeout(()=>{ btn.textContent=orig; btn.style.background=''; btn.style.borderColor=''; },3500);
+    });
 }
 </script>
 <!-- Netlify Identity：用於處理後台邀請/重設密碼連結 -->
