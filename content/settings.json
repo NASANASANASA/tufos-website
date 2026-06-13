@@ -1,12 +1,12 @@
 {
-  "email": "info@tufos.org.tw",
-  "facebook": "https://www.facebook.com/taiwanufosociety",
-  "facebookAlt": "https://www.facebook.com/ufoalienuxptw",
-  "youtube": "",
-  "line": "",
-  "officialSite": "https://www.tufos.org.tw/",
   "footerDescription": "致力於不明飛行物現象的科學研究與記錄，連結全球研究者，探索宇宙未解之謎。本網站所有資料僅供研究參考，不代表任何政治立場。",
-  "alert": "🛸 歡迎透過下方表單通報您的UFO目擊經驗，所有資料將嚴格保密。",
+  "facebookAlt": "",
+  "youtube": "",
+  "facebook": "https://www.facebook.com/taiwanufosociety",
   "footerDescription_en": "",
-  "alert_en": ""
+  "alert_en": "",
+  "officialSite": "https://www.tufos.org.tw/",
+  "line": "",
+  "alert": "🛸 歡迎透過下方表單通報您的UFO目擊經驗，所有資料將嚴格保密。",
+  "email": "info@tufos.org.tw"
 }
