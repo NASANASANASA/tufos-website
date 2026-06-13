@@ -185,19 +185,14 @@
   /* ============================================================
      NEWS GRID
   ============================================================ */
-  .news-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:repeat(2,1fr);gap:1.6rem;}
+  .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
   .news-card{display:flex;flex-direction:column;text-decoration:none;}
-  .news-card .ph{border-radius:6px;margin-bottom:1rem;}
-  .news-card.large{grid-row:span 2;}
-  .news-card.large .ph{aspect-ratio:4/3;}
-  .news-card:not(.large) .ph{aspect-ratio:16/10;}
+  .news-card .ph{border-radius:6px;margin-bottom:1rem;aspect-ratio:16/10;}
   .news-card .tag{position:absolute;top:1rem;left:1rem;}
   .news-card .news-date{font-size:.78rem;color:var(--gray);font-weight:600;letter-spacing:.05em;margin-bottom:.4rem;}
   .news-card h3{font-size:1.2rem;font-weight:700;line-height:1.4;transition:.2s;}
-  .news-card.large h3{font-size:1.7rem;}
   .news-card:hover h3{color:var(--blue);}
   .news-card p{color:var(--gray);font-size:.9rem;margin-top:.5rem;white-space:pre-line;}
-  .news-card.large p{max-height:14rem;overflow:auto;}
 
   /* ============================================================
      STATS BAND

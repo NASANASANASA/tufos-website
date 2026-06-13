@@ -197,17 +197,17 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
     const featured = news.items.find(n=>n.featured) || news.items[0];
     const rest = news.items.filter(n=>n!==featured).slice(0,4);
     const tagClass = (cat) => (cat==='國際動態' || cat==='媒體報導') ? 'tag-red' : 'tag-blue';
-    const card = async (item, large) => {
+    const card = async (item) => {
       const [title, summary] = await Promise.all([field(item,'title'), field(item,'summary')]);
       return `
-      <a class="news-card${large?' large':''}" href="#">
+      <a class="news-card" href="#">
         <div class="${phClass(item)}" ${ph(item)}><span class="tag ${tagClass(item.category)}">${ui(item.category)||''}</span></div>
         <div class="news-date">${item.date||''}</div>
         <h3>${title||''}</h3>
         <p>${summary||''}</p>
       </a>`;
     };
-    const cards = await Promise.all([featured && card(featured, true), ...rest.map(item=>card(item, false))].filter(Boolean));
+    const cards = await Promise.all([featured, ...rest].filter(Boolean).map(item=>card(item)));
     grid.innerHTML = cards.join('');
   }
 
