@@ -257,6 +257,23 @@
   /* ============================================================
      MEMBERSHIP
   ============================================================ */
+  .join-intro{margin-bottom:3.5rem;}
+  .join-lead{font-size:1.25rem;font-weight:800;color:var(--blue);margin-bottom:1rem;}
+  .join-intro > p{color:var(--gray);font-size:.95rem;line-height:1.9;max-width:860px;}
+  .join-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:2.2rem;}
+  .join-info-card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:1.8rem;}
+  .join-info-card h4{
+    font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--blue);margin-bottom:1rem;
+  }
+  .join-info-card p{font-size:.9rem;color:var(--gray);line-height:1.8;margin-bottom:.3rem;}
+  .join-price-line{font-size:1.05rem;color:var(--ink);}
+  .join-price-line strong{color:var(--blue);}
+  .join-info-card ul{font-size:.9rem;color:var(--gray);line-height:1.8;}
+  .join-info-card ul li{padding:.3rem 0;display:flex;gap:.55rem;align-items:flex-start;}
+  .join-info-card ul li::before{content:'✓';color:var(--blue);font-weight:800;}
+  .join-note{font-size:.8rem;color:var(--gray-light);margin-top:.7rem;line-height:1.7;}
+  .join-note a{color:var(--blue);}
   .join-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
   .join-card{
     background:var(--white);border:1px solid var(--line);border-radius:8px;
@@ -331,6 +348,7 @@
     .report-layout{grid-template-columns:1fr;gap:2.5rem;}
     .form-grid{grid-template-columns:1fr;}
     .join-grid{grid-template-columns:1fr;}
+    .join-info-grid{grid-template-columns:1fr;}
     footer .footer-top{grid-template-columns:1fr;padding:3rem 0 2rem;}
     #hero{height:auto;min-height:640px;padding-top:6rem;}
   }
