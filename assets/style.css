@@ -14,7 +14,7 @@
     --sans:'Noto Sans TC','Public Sans',sans-serif;
   }
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;scroll-padding-top:96px;}
   body{
     font-family:var(--sans);
     color:var(--ink);
@@ -112,9 +112,9 @@
   ============================================================ */
   #topbar{
     background:var(--blue-dark);color:#cdd6ee;
-    font-size:.78rem;font-weight:500;
+    font-size:.72rem;font-weight:500;
   }
-  #topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:36px;}
+  #topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:28px;}
   #topbar a{color:#cdd6ee;transition:.2s;}
   #topbar a:hover{color:var(--white);}
   .topbar-left{display:flex;gap:1.5rem;}
@@ -130,7 +130,7 @@
   }
   #header .wrap{
     display:flex;align-items:center;justify-content:space-between;
-    height:84px;
+    height:76px;
   }
   .logo{display:flex;align-items:center;gap:.8rem;}
   .logo img{width:46px;height:46px;}
@@ -149,10 +149,10 @@
   /* ============================================================
      HERO / FEATURED
   ============================================================ */
-  #hero{height:88vh;min-height:560px;display:flex;align-items:flex-end;}
-  #hero .hero-content{padding:3.5rem 0;color:var(--white);max-width:760px;position:relative;z-index:2;}
+  #hero{height:calc(100vh - 124px);min-height:520px;max-height:640px;display:flex;align-items:flex-end;}
+  #hero .hero-content{padding:3rem 0 3.4rem;color:var(--white);max-width:760px;position:relative;z-index:2;}
   #hero .tag-row{display:none;}
-  #hero h1{font-size:clamp(2.2rem,5.2vw,4rem);font-weight:800;line-height:1.16;letter-spacing:-.01em;margin-bottom:1rem;}
+  #hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.16;letter-spacing:0;margin-bottom:1rem;}
   #hero p{font-size:1.05rem;color:#dfe3ef;max-width:560px;margin-bottom:1.8rem;}
   #hero .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
 
@@ -187,12 +187,12 @@
   ============================================================ */
   .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
   .news-card{display:flex;flex-direction:column;text-decoration:none;}
-  .news-card .ph{border-radius:6px;margin-bottom:1rem;aspect-ratio:16/10;}
+  .news-card .ph{border-radius:6px;margin-bottom:1rem;aspect-ratio:16/10;background-position:center;}
   .news-card .tag{position:absolute;top:1rem;left:1rem;}
   .news-card .news-date{font-size:.78rem;color:var(--gray);font-weight:600;letter-spacing:.05em;margin-bottom:.4rem;}
   .news-card h3{font-size:1.2rem;font-weight:700;line-height:1.4;transition:.2s;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
   .news-card:hover h3{color:var(--blue);}
-  .news-card p{color:var(--gray);font-size:.9rem;margin-top:.5rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+  .news-card p{color:var(--gray);font-size:.9rem;margin-top:.5rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 
   /* ============================================================
      STATS BAND
@@ -336,9 +336,15 @@
   }
   @media(max-width:768px){
     .wrap{padding:0 1.2rem;}
+    html{scroll-padding-top:86px;}
     #topbar{display:none;}
+    #header .wrap{height:84px;}
+    .logo img{width:40px;height:40px;}
+    .logo .logo-text{font-size:.98rem;}
+    .logo .logo-text small{font-size:.62rem;letter-spacing:.08em;}
     .nav-links{display:none;}
     .nav-hamburger{display:flex;}
+    .header-cta .btn{width:64px;height:54px;justify-content:center;padding:0;font-size:1.2rem;}
     .header-cta .btn span.label{display:none;}
     .topics-grid{grid-template-columns:repeat(2,1fr);}
     .news-grid{grid-template-columns:1fr;}
@@ -350,5 +356,14 @@
     .join-grid{grid-template-columns:1fr;}
     .join-info-grid{grid-template-columns:1fr;}
     footer .footer-top{grid-template-columns:1fr;padding:3rem 0 2rem;}
-    #hero{height:auto;min-height:640px;padding-top:6rem;}
+    .section{padding:4rem 0;}
+    .section-head{align-items:flex-start;margin-bottom:2rem;}
+    #hero{height:auto;min-height:560px;max-height:none;align-items:center;padding:5rem 0 3.5rem;}
+    #hero .hero-content{padding:0 1.2rem;max-width:100%;}
+    #hero h1{font-size:clamp(2rem,11vw,2.55rem);line-height:1.14;max-width:7.4em;overflow-wrap:break-word;}
+    #hero p{font-size:1rem;line-height:1.8;max-width:100%;}
+    #hero .hero-btns{display:grid;grid-template-columns:1fr;gap:.8rem;}
+    #hero .hero-btns .btn{justify-content:center;width:100%;padding:.85rem 1rem;}
+    .news-card .ph{aspect-ratio:16/9;}
+    .news-card h3{font-size:1.08rem;}
   }

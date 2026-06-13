@@ -278,11 +278,31 @@ const fadeObs = new IntersectionObserver(entries=>{
 document.querySelectorAll('.fade-up').forEach(el=>fadeObs.observe(el));
 
 /* ---- Smooth scroll ---- */
+function scrollToHashTarget(hash, behavior = 'smooth'){
+  if(!hash || hash === '#') return;
+  const t = document.querySelector(hash);
+  if(!t) return;
+  const header = document.getElementById('header');
+  const offset = (header ? header.offsetHeight : 0) + 14;
+  const y = t.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({ top: Math.max(0, y), behavior });
+}
+
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+    const hash = a.getAttribute('href');
+    const t=document.querySelector(hash);
+    if(t){
+      e.preventDefault();
+      history.pushState(null, '', hash);
+      scrollToHashTarget(hash);
+    }
   });
+});
+
+window.addEventListener('hashchange', ()=>scrollToHashTarget(window.location.hash));
+window.addEventListener('load', ()=>{
+  if(window.location.hash) setTimeout(()=>scrollToHashTarget(window.location.hash, 'auto'), 0);
 });
 
 /* ---- Tab filter ---- */
