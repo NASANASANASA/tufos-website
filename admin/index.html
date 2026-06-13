@@ -46,6 +46,20 @@
         }
       });
     }
+
+    /* 後台介面渲染完成後，自動隱藏「載入中」畫面 */
+    const loadingEl = document.getElementById('loading');
+    const hideLoading = () => { loadingEl.style.display = 'none'; };
+    const observer = new MutationObserver(() => {
+      for (const child of document.body.children) {
+        if (child.id !== 'loading' && child.tagName !== 'SCRIPT') {
+          hideLoading();
+          observer.disconnect();
+          return;
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true });
   </script>
 </body>
 </html>
