@@ -190,9 +190,9 @@
   .news-card .ph{border-radius:6px;margin-bottom:1rem;aspect-ratio:16/10;}
   .news-card .tag{position:absolute;top:1rem;left:1rem;}
   .news-card .news-date{font-size:.78rem;color:var(--gray);font-weight:600;letter-spacing:.05em;margin-bottom:.4rem;}
-  .news-card h3{font-size:1.2rem;font-weight:700;line-height:1.4;transition:.2s;}
+  .news-card h3{font-size:1.2rem;font-weight:700;line-height:1.4;transition:.2s;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
   .news-card:hover h3{color:var(--blue);}
-  .news-card p{color:var(--gray);font-size:.9rem;margin-top:.5rem;white-space:pre-line;}
+  .news-card p{color:var(--gray);font-size:.9rem;margin-top:.5rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
 
   /* ============================================================
      STATS BAND
