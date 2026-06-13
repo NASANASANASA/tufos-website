@@ -501,7 +501,11 @@
             <textarea name="description" placeholder="請詳細描述您所目擊的現象，包括顏色、大小、移動方式、持續時間等..." required></textarea>
           </div>
           <div class="form-group full"><label>聯絡方式（可匿名）</label><input type="email" name="contact" placeholder="您的電子郵件（選填）"></div>
-          <div class="form-group full"><label>相關照片或影片（選填）</label><input type="file" name="attachment" accept="image/*,video/*" multiple></div>
+          <div class="form-group full">
+            <label>相關照片或影片（選填）</label>
+            <input type="file" name="attachment" accept="image/*,video/*" multiple>
+            <small style="display:block;color:var(--gray);margin-top:.4rem;">單個檔案請小於 8MB；如檔案較大（例如完整影片），請改在「詳細描述」中提供雲端連結（Google Drive、YouTube 等）。</small>
+          </div>
         </div>
         <button type="submit" class="btn btn-red">提交目擊通報 →</button>
       </form>
@@ -772,6 +776,17 @@ function submitReport(e){
   const btn=form.querySelector('button[type="submit"]');
   const orig=btn.textContent;
   const alertBox=document.getElementById('report-alert');
+  const MAX_SIZE=8*1024*1024;
+  const fileInput=form.querySelector('input[type="file"]');
+  if(fileInput && fileInput.files){
+    for(const file of fileInput.files){
+      if(file.size>MAX_SIZE){
+        if(alertBox){ alertBox.textContent=`⚠️ 檔案「${file.name}」超過 8MB，請改在「詳細描述」中提供雲端連結（Google Drive、YouTube 等）後再提交。`; alertBox.style.display='block'; }
+        return;
+      }
+    }
+  }
+  if(alertBox) alertBox.style.display='none';
   btn.disabled=true;
   btn.textContent='送出中...';
   const data=new FormData(form);
