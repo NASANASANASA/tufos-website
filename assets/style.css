@@ -149,7 +149,7 @@
   /* ============================================================
      HERO / FEATURED
   ============================================================ */
-  #hero{height:calc(100vh - 124px);min-height:520px;max-height:640px;display:flex;align-items:flex-end;}
+  #hero{height:calc(78vh - 124px);min-height:420px;max-height:520px;display:flex;align-items:flex-end;}
   #hero .hero-content{padding:3rem 0 3.4rem;color:var(--white);max-width:760px;position:relative;z-index:2;}
   #hero .tag-row{display:none;}
   #hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.16;letter-spacing:0;margin-bottom:1rem;}
