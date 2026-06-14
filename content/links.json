@@ -34,6 +34,27 @@
       "description": "National UFO Reporting Center，美國民間UFO目擊事件回報與資料庫。",
       "name_en": "NUFORC",
       "description_en": "National UFO Reporting Center — a database of civilian UFO sighting reports."
+    },
+    {
+      "name": "NASA YouTube 頻道",
+      "url": "https://www.youtube.com/@NASA",
+      "description": "NASA官方YouTube頻道，提供火箭發射直播、太空任務紀錄與科普影片。",
+      "name_en": "NASA",
+      "description_en": "NASA's official YouTube channel — live launches, mission footage, and science videos."
+    },
+    {
+      "name": "SETI Institute YouTube 頻道",
+      "url": "https://www.youtube.com/@SETIInstitute",
+      "description": "SETI Institute官方頻道，分享天文學講座與地外生命搜尋相關研究內容。",
+      "name_en": "SETI Institute",
+      "description_en": "Official channel of the SETI Institute — talks and research on the search for life beyond Earth."
+    },
+    {
+      "name": "Find Out Now UFO",
+      "url": "https://www.youtube.com/@FindOutNowUFO",
+      "description": "整理全球UFO目擊影片與新聞，並邀請目擊者分享第一手經驗。",
+      "name_en": "Find Out Now UFO",
+      "description_en": "Curates UFO sighting footage and news from around the world, featuring witness interviews."
     }
   ]
 }

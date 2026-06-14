@@ -149,7 +149,7 @@
   /* ============================================================
      HERO / FEATURED
   ============================================================ */
-  #hero{height:calc(78vh - 124px);min-height:420px;max-height:520px;display:flex;align-items:flex-end;}
+  #hero{height:calc(78vh - 124px);min-height:420px;max-height:520px;display:flex;align-items:center;}
   #hero .hero-content{padding:3rem 0 3.4rem;color:var(--white);max-width:760px;position:relative;z-index:2;}
   #hero .tag-row{display:none;}
   #hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.16;letter-spacing:0;margin-bottom:1rem;}
@@ -164,6 +164,14 @@
   }
   #hero:hover::before{opacity:1;}
 
+  /* ---- 星空閃爍效果 ---- */
+  .hero-stars{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none;}
+  .hero-stars .star{position:absolute;border-radius:50%;background:#fff;animation:star-twinkle ease-in-out infinite;}
+  @keyframes star-twinkle{
+    0%,100%{opacity:.15;transform:scale(.7);}
+    50%{opacity:1;transform:scale(1.2);}
+  }
+
   /* ---- 滑鼠掃過的流星效果 ---- */
   .hero-meteors{position:absolute;inset:0;overflow:hidden;z-index:1;pointer-events:none;}
   .meteor{
@@ -173,8 +181,8 @@
     animation:meteor-fall .9s ease-out forwards;
   }
   .meteor::after{
-    content:'';position:absolute;right:-2px;top:50%;width:6px;height:6px;margin-top:-3px;
-    background:#fff;border-radius:50%;box-shadow:0 0 10px 3px rgba(170,210,255,.9);
+    content:'';position:absolute;left:-2px;top:50%;width:6px;height:6px;margin-top:-3px;
+    background:#fff;border-radius:50%;box-shadow:0 0 12px 4px rgba(170,210,255,.9);
   }
   @keyframes meteor-fall{
     0%{transform:translate(0,0) rotate(-30deg) scaleX(.3);opacity:1;}
@@ -186,9 +194,11 @@
      NEWS GRID
   ============================================================ */
   .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
-  .news-card{display:flex;flex-direction:column;text-decoration:none;}
-  .news-card .ph{border-radius:6px;margin-bottom:1rem;aspect-ratio:16/10;background-position:center;}
+  .news-card{display:flex;flex-direction:column;text-decoration:none;background:var(--white);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:.2s;}
+  .news-card:hover{box-shadow:0 12px 28px rgba(0,0,0,.08);transform:translateY(-4px);}
+  .news-card .ph{aspect-ratio:16/10;background-position:center;}
   .news-card .tag{position:absolute;top:1rem;left:1rem;}
+  .news-card .news-body{padding:1.2rem;}
   .news-card .news-date{font-size:.78rem;color:var(--gray);font-weight:600;letter-spacing:.05em;margin-bottom:.4rem;}
   .news-card h3{font-size:1.2rem;font-weight:700;line-height:1.4;transition:.2s;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
   .news-card:hover h3{color:var(--blue);}

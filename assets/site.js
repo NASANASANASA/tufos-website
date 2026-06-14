@@ -88,6 +88,25 @@ document.addEventListener('keydown', e=>{
   closeAllCasesModal();
 });
 
+/* ---- Hero：星空閃爍效果 ---- */
+(function(){
+  const starBox = document.getElementById('hero-stars');
+  if(!starBox) return;
+  const STAR_COUNT = 80;
+  for(let i=0;i<STAR_COUNT;i++){
+    const star = document.createElement('span');
+    star.className = 'star';
+    const size = (Math.random()*2 + 1).toFixed(1);
+    star.style.left = (Math.random()*100) + '%';
+    star.style.top = (Math.random()*100) + '%';
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.animationDuration = (Math.random()*3 + 2).toFixed(2) + 's';
+    star.style.animationDelay = (Math.random()*4).toFixed(2) + 's';
+    starBox.appendChild(star);
+  }
+})();
+
 /* ---- Hero：滑鼠光暈 + 流星拖尾效果 ---- */
 (function(){
   const hero = document.getElementById('hero');
@@ -254,9 +273,11 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
       return `
       <a class="news-card" href="#" onclick="openNewsModal(${i});return false;">
         <div class="${phClass(item)}" ${ph(item)}><span class="tag ${tagClass(item.category)}">${ui(item.category)||''}</span></div>
-        <div class="news-date">${item.date||''}</div>
-        <h3>${title||''}</h3>
-        <p>${summary||''}</p>
+        <div class="news-body">
+          <div class="news-date">${item.date||''}</div>
+          <h3>${title||''}</h3>
+          <p>${summary||''}</p>
+        </div>
       </a>`;
     }).join('');
 
