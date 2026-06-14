@@ -60,32 +60,45 @@
   <div class="hero-meteors" id="hero-meteors"></div>
   <div class="hero-decor" aria-hidden="true">
     <div class="hero-ufo">
-      <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="ufoBody" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#f4f7fb"/>
-            <stop offset=".45" stop-color="#b8c3d8"/>
-            <stop offset=".55" stop-color="#8995ac"/>
-            <stop offset="1" stop-color="#4a5570"/>
+          <radialGradient id="ufoHull" cx="35%" cy="25%" r="80%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="35%" stop-color="#d6dde6"/>
+            <stop offset="70%" stop-color="#98a3b4"/>
+            <stop offset="100%" stop-color="#454c5c"/>
+          </radialGradient>
+          <radialGradient id="ufoDome" cx="38%" cy="28%" r="80%">
+            <stop offset="0%" stop-color="#eafeff"/>
+            <stop offset="45%" stop-color="#8fd9e8"/>
+            <stop offset="100%" stop-color="#3a7f96"/>
+          </radialGradient>
+          <linearGradient id="ufoRing" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#6e1c1c"/>
+            <stop offset="50%" stop-color="#d6453f"/>
+            <stop offset="100%" stop-color="#6e1c1c"/>
           </linearGradient>
-          <linearGradient id="ufoDome" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#eafcff"/>
-            <stop offset="1" stop-color="#6ea7cc"/>
-          </linearGradient>
-          <linearGradient id="ufoBeam" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#9ee9ff" stop-opacity=".4"/>
-            <stop offset="1" stop-color="#9ee9ff" stop-opacity="0"/>
-          </linearGradient>
+          <filter id="ufoGlow" x="-150%" y="-150%" width="400%" height="400%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
         </defs>
-        <path d="M34 80 L52 50 L108 50 L126 80 Z" fill="url(#ufoBeam)"/>
-        <ellipse cx="80" cy="50" rx="78" ry="13" fill="url(#ufoBody)"/>
-        <ellipse cx="80" cy="50" rx="78" ry="13" fill="none" stroke="#2e3a52" stroke-opacity=".25"/>
-        <ellipse cx="80" cy="47" rx="56" ry="6.5" fill="#5b6780" opacity=".35"/>
-        <ellipse cx="80" cy="38" rx="34" ry="21" fill="url(#ufoDome)"/>
-        <ellipse cx="68" cy="29" rx="12" ry="6" fill="#ffffff" opacity=".35"/>
-        <circle cx="46" cy="52" r="3" fill="#ff5c5c"><animate attributeName="opacity" values="1;.25;1" dur="1.8s" repeatCount="indefinite"/></circle>
-        <circle cx="80" cy="57" r="3" fill="#9ee9ff"><animate attributeName="opacity" values=".25;1;.25" dur="1.8s" repeatCount="indefinite"/></circle>
-        <circle cx="114" cy="52" r="3" fill="#ff5c5c"><animate attributeName="opacity" values="1;.25;1" dur="1.8s" begin=".5s" repeatCount="indefinite"/></circle>
+        <ellipse cx="100" cy="100" rx="90" ry="18" fill="#7fe8ff" opacity=".22" filter="url(#ufoGlow)"/>
+        <ellipse cx="100" cy="88" rx="94" ry="24" fill="url(#ufoHull)"/>
+        <ellipse cx="100" cy="88" rx="94" ry="24" fill="none" stroke="#2c3140" stroke-opacity=".4"/>
+        <ellipse cx="100" cy="76" rx="58" ry="11" fill="url(#ufoRing)"/>
+        <ellipse cx="100" cy="56" rx="36" ry="29" fill="url(#ufoDome)" opacity=".95"/>
+        <g opacity=".55" fill="#173238">
+          <ellipse cx="100" cy="51" rx="10" ry="11"/>
+          <path d="M89 60 q11 -7 22 0 l-2 8 h-18z"/>
+        </g>
+        <ellipse cx="84" cy="40" rx="15" ry="9" fill="#ffffff" opacity=".45"/>
+        <g filter="url(#ufoGlow)">
+          <ellipse cx="56" cy="103" rx="7" ry="4" fill="#7fe8ff"><animate attributeName="opacity" values="1;.3;1" dur="1.8s" repeatCount="indefinite"/></ellipse>
+          <ellipse cx="83" cy="110" rx="7" ry="4" fill="#7fe8ff"><animate attributeName="opacity" values=".3;1;.3" dur="1.8s" repeatCount="indefinite"/></ellipse>
+          <ellipse cx="117" cy="110" rx="7" ry="4" fill="#7fe8ff"><animate attributeName="opacity" values="1;.3;1" dur="1.8s" begin=".4s" repeatCount="indefinite"/></ellipse>
+          <ellipse cx="144" cy="103" rx="7" ry="4" fill="#7fe8ff"><animate attributeName="opacity" values=".3;1;.3" dur="1.8s" begin=".4s" repeatCount="indefinite"/></ellipse>
+        </g>
       </svg>
     </div>
     <div class="hero-alien hero-alien-1">
