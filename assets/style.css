@@ -263,8 +263,8 @@
   }
   .join-info-card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:1.8rem;}
   .join-info-card h4{
-    font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--blue);margin-bottom:1rem;
+    font-size:1.1rem;font-weight:800;
+    color:var(--blue);margin-bottom:.9rem;
   }
   .join-info-card p{font-size:.9rem;color:var(--gray);line-height:1.8;margin-bottom:.3rem;}
   .join-price-line{font-size:1.05rem;color:var(--ink);}
