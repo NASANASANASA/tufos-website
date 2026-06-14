@@ -127,12 +127,7 @@
         <div class="eyebrow">CASE DATABASE</div>
         <h2>目擊案例資料庫</h2>
       </div>
-    </div>
-    <div class="tab-row fade-up">
-      <button class="tab-btn active" data-filter="all">全部案例</button>
-      <button class="tab-btn" data-filter="high">高可信度</button>
-      <button class="tab-btn" data-filter="recent">近期案例</button>
-      <button class="tab-btn" data-filter="video">影像記錄</button>
+      <a href="#" class="link-more" onclick="openAllCasesModal();return false;">查看所有案例 →</a>
     </div>
     <div class="cases-grid fade-up" id="cases-grid"></div>
   </div>
@@ -238,9 +233,14 @@
         </div>
       </div>
       <div class="join-gallery">
-        <div class="ph" style="background-image:url('/images/event/join.jpg');background-size:cover;background-position:center;"></div>
-        <div class="ph" style="background-image:url('/images/event/member2.jpg');background-size:cover;background-position:center;"></div>
-        <div class="ph" style="background-image:url('/images/event/20230612.jpg');background-size:cover;background-position:center;"></div>
+        <div class="join-gallery-track">
+          <div class="ph" style="background-image:url('/images/event/join.jpg');background-size:cover;background-position:center;"></div>
+          <div class="ph" style="background-image:url('/images/event/member2.jpg');background-size:cover;background-position:center;"></div>
+          <div class="ph" style="background-image:url('/images/event/20230612.jpg');background-size:cover;background-position:center;"></div>
+          <div class="ph" style="background-image:url('/images/event/join.jpg');background-size:cover;background-position:center;"></div>
+          <div class="ph" style="background-image:url('/images/event/member2.jpg');background-size:cover;background-position:center;"></div>
+          <div class="ph" style="background-image:url('/images/event/20230612.jpg');background-size:cover;background-position:center;"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -310,6 +310,26 @@
     <button class="modal-close" onclick="closeAllNewsModal()" aria-label="關閉">&times;</button>
     <h3 style="margin-bottom:1.4rem;">最新消息</h3>
     <div class="news-list" id="news-list"></div>
+  </div>
+</div>
+
+<!-- ===== CASE MODAL ===== -->
+<div class="modal-overlay" id="case-modal" onclick="if(event.target===this) closeCaseModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeCaseModal()" aria-label="關閉">&times;</button>
+    <div class="ph" id="case-modal-img"></div>
+    <div class="modal-date" id="case-modal-meta"></div>
+    <h3 id="case-modal-title"></h3>
+    <p id="case-modal-body"></p>
+  </div>
+</div>
+
+<!-- ===== ALL CASES MODAL ===== -->
+<div class="modal-overlay" id="all-cases-modal" onclick="if(event.target===this) closeAllCasesModal()">
+  <div class="modal-box modal-box-wide">
+    <button class="modal-close" onclick="closeAllCasesModal()" aria-label="關閉">&times;</button>
+    <h3 style="margin-bottom:1.4rem;">目擊案例資料庫</h3>
+    <div class="news-list" id="cases-list"></div>
   </div>
 </div>
 

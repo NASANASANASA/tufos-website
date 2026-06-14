@@ -44,10 +44,48 @@ function closeAllNewsModal(){
   document.getElementById('all-news-modal').classList.remove('open');
   document.body.style.overflow = '';
 }
+/* ---- Case modal：點擊案例卡片顯示完整內容 ---- */
+function openCaseModal(i){
+  const data = (window.__casesData || [])[i];
+  if(!data) return;
+  const { item, title, summary, location } = data;
+  const imgEl = document.getElementById('case-modal-img');
+  if(item.image){
+    imgEl.className = 'ph';
+    imgEl.style.backgroundImage = `url('${item.image}')`;
+    imgEl.style.backgroundSize = 'cover';
+    imgEl.style.backgroundPosition = 'center';
+  } else {
+    imgEl.className = `ph ${item.background || 'ph-grid'}`;
+    imgEl.style.backgroundImage = '';
+  }
+  document.getElementById('case-modal-meta').textContent = `${item.date||''}　${location||''}　${item.witnesses||1}${ui('人')}`;
+  document.getElementById('case-modal-title').textContent = title || '';
+  document.getElementById('case-modal-body').textContent = summary || '';
+  document.getElementById('case-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCaseModal(){
+  document.getElementById('case-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ---- All cases modal：「查看所有案例」彈出完整列表 ---- */
+function openAllCasesModal(){
+  document.getElementById('all-cases-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAllCasesModal(){
+  document.getElementById('all-cases-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 document.addEventListener('keydown', e=>{
   if(e.key !== 'Escape') return;
   closeNewsModal();
   closeAllNewsModal();
+  closeCaseModal();
+  closeAllCasesModal();
 });
 
 /* ---- Hero：滑鼠光暈 + 流星拖尾效果 ---- */
@@ -110,6 +148,13 @@ function translateText(text){
       return translated;
     })
     .catch(()=>text);
+}
+
+/* 將「2026.6.14」「2024.11.28」「2026年6月14日（星期日）」等日期字串轉為可比較的數字 */
+function parseDate(str){
+  const m = String(str || '').match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);
+  if(!m) return 0;
+  return Number(m[1])*10000 + Number(m[2])*100 + Number(m[3]);
 }
 
 /* 取得內容欄位：中文版直接回傳；英文版優先用 `${key}_en`，
@@ -226,10 +271,8 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
   /* ---- News ---- */
   if(news && Array.isArray(news.items)){
     const grid = document.getElementById('news-grid');
-    const allItems = news.items;
-    const featured = allItems.find(n=>n.featured) || allItems[0];
-    const rest = allItems.filter(n=>n!==featured);
-    const gridItems = [featured, ...rest].filter(Boolean).slice(0,5);
+    const allItems = [...news.items].sort((a,b)=>parseDate(b.date)-parseDate(a.date));
+    const gridItems = allItems.slice(0,3);
     const tagClass = (cat) => (cat==='國際動態' || cat==='媒體報導') ? 'tag-red' : 'tag-blue';
 
     window.__newsData = await Promise.all(allItems.map(async item=>{
@@ -267,23 +310,40 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
   /* ---- Cases ---- */
   if(cases && Array.isArray(cases.items)){
     const grid = document.getElementById('cases-grid');
-    const credLabel = { high:'高可信度', mid:'中可信度', low:'待確認' };
-    const credCls = { high:'tag-red', mid:'tag-blue', low:'tag-blue' };
-    const cardsHtml = await Promise.all(cases.items.map(async item=>{
-      const labelZh = credLabel[item.credibility] || credLabel.low;
-      const cls = credCls[item.credibility] || credCls.low;
+    const allItems = [...cases.items].sort((a,b)=>parseDate(b.date)-parseDate(a.date));
+    const gridItems = allItems.slice(0,4);
+
+    window.__casesData = await Promise.all(allItems.map(async item=>{
       const [title, summary, location] = await Promise.all([field(item,'title'), field(item,'summary'), field(item,'location')]);
+      return {item, title, summary, location};
+    }));
+
+    grid.innerHTML = gridItems.map(item=>{
+      const i = allItems.indexOf(item);
+      const {title, summary, location} = window.__casesData[i];
       return `
-      <div class="case-card">
-        <div class="${phClass(item)}" ${ph(item)}><span class="tag ${cls}">${ui(labelZh)}</span></div>
+      <a class="case-card" href="#" onclick="openCaseModal(${i});return false;">
+        <div class="${phClass(item)}" ${ph(item)}></div>
         <div class="case-body">
           <h3>${title||''}</h3>
           <p>${summary||''}</p>
           <div class="case-meta"><span>${item.date||''}</span><span>${location||''}</span><span>${item.witnesses||1}${ui('人')}</span></div>
         </div>
-      </div>`;
-    }));
-    grid.innerHTML = cardsHtml.join('');
+      </a>`;
+    }).join('');
+
+    const listEl = document.getElementById('cases-list');
+    if(listEl){
+      listEl.innerHTML = allItems.map((item,i)=>{
+        const {title, summary, location} = window.__casesData[i];
+        return `
+        <a class="news-list-item" href="#" onclick="closeAllCasesModal();openCaseModal(${i});return false;">
+          <div class="news-date">${item.date||''}　${location||''}　${item.witnesses||1}${ui('人')}</div>
+          <h4>${title||''}</h4>
+          <p>${summary||''}</p>
+        </a>`;
+      }).join('');
+    }
   }
 
   /* ---- Settings (footer / report alert) ---- */
@@ -340,13 +400,6 @@ window.addEventListener('load', ()=>{
   if(window.location.hash) setTimeout(()=>scrollToHashTarget(window.location.hash, 'auto'), 0);
 });
 
-/* ---- Tab filter ---- */
-document.querySelectorAll('.tab-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-  });
-});
 
 /* ---- Report form ---- */
 function updateFileName(input){
