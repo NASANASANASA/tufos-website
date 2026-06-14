@@ -274,28 +274,6 @@
   .join-info-card ul li::before{content:'✓';color:var(--blue);font-weight:800;}
   .join-note{font-size:.8rem;color:var(--gray-light);margin-top:.7rem;line-height:1.7;}
   .join-note a{color:var(--blue);}
-  .join-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
-  .join-card{
-    background:var(--white);border:1px solid var(--line);border-radius:8px;
-    padding:2.4rem;display:flex;flex-direction:column;
-  }
-  .join-card.featured{border:2px solid var(--blue);position:relative;}
-  .join-card.featured::before{
-    content:'推薦方案';position:absolute;top:-13px;left:2rem;
-    background:var(--blue);color:var(--white);font-size:.72rem;font-weight:700;
-    padding:.25rem .8rem;border-radius:30px;letter-spacing:.05em;
-  }
-  .join-card h3{font-size:1.3rem;font-weight:800;margin-bottom:.4rem;}
-  .join-price{font-size:2.4rem;font-weight:800;margin:1rem 0 1.4rem;}
-  .join-price span{font-size:.85rem;font-weight:500;color:var(--gray);}
-  .join-card ul{margin-bottom:1.8rem;flex-grow:1;}
-  .join-card ul li{
-    font-size:.9rem;color:var(--gray);padding:.55rem 0;
-    border-top:1px solid var(--line);
-    display:flex;gap:.6rem;align-items:flex-start;
-  }
-  .join-card ul li:first-child{border-top:none;}
-  .join-card ul li::before{content:'✓';color:var(--blue);font-weight:800;}
 
   /* ============================================================
      FOOTER
@@ -353,7 +331,6 @@
     .cases-grid{grid-template-columns:1fr;}
     .report-layout{grid-template-columns:1fr;gap:2.5rem;}
     .form-grid{grid-template-columns:1fr;}
-    .join-grid{grid-template-columns:1fr;}
     .join-info-grid{grid-template-columns:1fr;}
     .join-gallery{grid-template-columns:1fr;}
     footer .footer-top{grid-template-columns:1fr;padding:3rem 0 2rem;}

@@ -81,15 +81,6 @@ function field(item, key){
   return translateText(zh);
 }
 
-/* 取得字串陣列欄位（例如會員權益列表），邏輯同上 */
-function fieldList(item, key){
-  const zh = (item && item[key]) || [];
-  if(SITE_LANG !== 'en') return Promise.resolve(zh);
-  const en = item && item[key + '_en'];
-  if(en && en.length) return Promise.resolve(en);
-  return Promise.all(zh.map(t=>translateText(t)));
-}
-
 /* 固定 UI 文字（分類標籤、可信度等）中英對照 */
 const UI_DICT = {
   '學會公告':'Society Announcements',
@@ -228,25 +219,6 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
           <p>${summary||''}</p>
           <div class="case-meta"><span>${item.date||''}</span><span>${location||''}</span><span>${item.witnesses||1}${ui('人')}</span></div>
         </div>
-      </div>`;
-    }));
-    grid.innerHTML = cardsHtml.join('');
-  }
-
-  /* ---- Membership ---- */
-  if(membership && Array.isArray(membership.items)){
-    const grid = document.getElementById('join-grid');
-    const mailto = (settings && settings.email) ? `mailto:${settings.email}` : '#';
-    const cardsHtml = await Promise.all(membership.items.map(async plan=>{
-      const [name, benefitsList, buttonText] = await Promise.all([field(plan,'name'), fieldList(plan,'benefits'), field(plan,'buttonText')]);
-      const benefits = (benefitsList||[]).map(b=>`<li>${b}</li>`).join('');
-      const btnCls = plan.buttonStyle ? `btn ${plan.buttonStyle}` : 'btn';
-      return `
-      <div class="join-card${plan.featured?' featured':''}">
-        <h3>${name||''}</h3>
-        <div class="join-price">${plan.price||''}<span> ${ui(plan.period)||''}</span></div>
-        <ul>${benefits}</ul>
-        <a href="${mailto}" class="${btnCls}">${buttonText||ui('聯絡我們')}</a>
       </div>`;
     }));
     grid.innerHTML = cardsHtml.join('');
