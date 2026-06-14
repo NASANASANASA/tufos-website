@@ -257,10 +257,10 @@
   /* ============================================================
      MEMBERSHIP
   ============================================================ */
-  .join-intro{margin-bottom:3.5rem;}
-  .join-lead{font-size:1.25rem;font-weight:800;color:var(--blue);margin-bottom:1rem;}
-  .join-intro > p{color:var(--gray);font-size:.95rem;line-height:1.9;max-width:860px;}
-  .join-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:2.2rem;}
+  .join-intro{margin-bottom:0;}
+  .join-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+  .join-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:1.6rem;}
+  .join-gallery .ph{aspect-ratio:4/3;border-radius:8px;}
   .join-info-card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:1.8rem;}
   .join-info-card h4{
     font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
@@ -355,6 +355,7 @@
     .form-grid{grid-template-columns:1fr;}
     .join-grid{grid-template-columns:1fr;}
     .join-info-grid{grid-template-columns:1fr;}
+    .join-gallery{grid-template-columns:1fr;}
     footer .footer-top{grid-template-columns:1fr;padding:3rem 0 2rem;}
     .section{padding:4rem 0;}
     .section-head{align-items:flex-start;margin-bottom:2rem;}
