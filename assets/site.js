@@ -9,6 +9,33 @@ const SITE_LANG = window.SITE_LANG || 'zh';
 function toggleMobile(){ document.getElementById('mobileMenu').classList.toggle('open'); }
 function closeMobile(){ document.getElementById('mobileMenu').classList.remove('open'); }
 
+/* ---- News modal：點擊新聞卡片顯示完整內容 ---- */
+function openNewsModal(i){
+  const data = (window.__newsData || [])[i];
+  if(!data) return;
+  const { item, title, summary } = data;
+  const imgEl = document.getElementById('modal-img');
+  if(item.image){
+    imgEl.className = 'ph';
+    imgEl.style.backgroundImage = `url('${item.image}')`;
+    imgEl.style.backgroundSize = 'cover';
+    imgEl.style.backgroundPosition = 'center';
+  } else {
+    imgEl.className = `ph ${item.background || 'ph-grid'}`;
+    imgEl.style.backgroundImage = '';
+  }
+  document.getElementById('modal-date').textContent = item.date || '';
+  document.getElementById('modal-title').textContent = title || '';
+  document.getElementById('modal-body').textContent = summary || '';
+  document.getElementById('news-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeNewsModal(){
+  document.getElementById('news-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeNewsModal(); });
+
 /* ---- Hero：滑鼠光暈 + 流星拖尾效果 ---- */
 (function(){
   const hero = document.getElementById('hero');
@@ -188,17 +215,19 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
     const featured = news.items.find(n=>n.featured) || news.items[0];
     const rest = news.items.filter(n=>n!==featured).slice(0,4);
     const tagClass = (cat) => (cat==='國際動態' || cat==='媒體報導') ? 'tag-red' : 'tag-blue';
-    const card = async (item) => {
+    window.__newsData = [];
+    const card = async (item, i) => {
       const [title, summary] = await Promise.all([field(item,'title'), field(item,'summary')]);
+      window.__newsData[i] = {item, title, summary};
       return `
-      <a class="news-card" href="#">
+      <a class="news-card" href="#" onclick="openNewsModal(${i});return false;">
         <div class="${phClass(item)}" ${ph(item)}><span class="tag ${tagClass(item.category)}">${ui(item.category)||''}</span></div>
         <div class="news-date">${item.date||''}</div>
         <h3>${title||''}</h3>
         <p>${summary||''}</p>
       </a>`;
     };
-    const cards = await Promise.all([featured, ...rest].filter(Boolean).map(item=>card(item)));
+    const cards = await Promise.all([featured, ...rest].filter(Boolean).map((item,i)=>card(item,i)));
     grid.innerHTML = cards.join('');
   }
 
