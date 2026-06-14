@@ -288,14 +288,13 @@
   /* ============================================================
      LINKS（相關網站連結）
   ============================================================ */
-  .links-list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--white);}
-  .link-row{display:grid;grid-template-columns:240px 1fr;gap:1.6rem;padding:1.2rem 1.6rem;text-decoration:none;color:inherit;border-bottom:1px solid var(--line);transition:.2s;}
-  .link-row:last-child{border-bottom:none;}
-  .link-row:hover{background:var(--bg);}
-  .link-name{font-weight:800;color:var(--blue);display:flex;align-items:center;gap:.4rem;}
+  .links-list{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+  .link-row{display:flex;flex-direction:column;gap:.5rem;padding:1.4rem 1.6rem;text-decoration:none;color:inherit;background:var(--white);border:1px solid var(--line);border-radius:6px;transition:.2s;}
+  .link-row:hover{box-shadow:0 12px 28px rgba(0,0,0,.08);transform:translateY(-4px);}
+  .link-name{font-size:1.05rem;font-weight:800;color:var(--blue);display:flex;align-items:center;gap:.4rem;}
   .link-name .arrow{opacity:0;transition:.2s;}
   .link-row:hover .link-name .arrow{opacity:1;transform:translateX(3px);}
-  .link-desc{color:var(--gray);font-size:.92rem;line-height:1.7;}
+  .link-desc{color:var(--gray);font-size:.9rem;line-height:1.7;}
 
   /* ============================================================
      FOOTER
@@ -368,6 +367,7 @@
   @media(max-width:1100px){
     .news-grid{grid-template-columns:1fr 1fr;}
     .cases-grid{grid-template-columns:repeat(2,1fr);}
+    .links-list{grid-template-columns:repeat(2,1fr);}
     footer .footer-top{grid-template-columns:1fr 1fr;}
   }
   @media(max-width:768px){
@@ -391,7 +391,7 @@
     .form-grid{grid-template-columns:1fr;}
     .join-info-grid{grid-template-columns:1fr;}
     .join-gallery-track .ph{flex:0 0 78vw;}
-    .link-row{grid-template-columns:1fr;gap:.4rem;}
+    .links-list{grid-template-columns:1fr;}
     footer .footer-top{grid-template-columns:1fr;padding:3rem 0 2rem;}
     .section{padding:4rem 0;}
     .section-head{align-items:flex-start;margin-bottom:2rem;}
