@@ -455,6 +455,7 @@
   }
 
   .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:3.5rem;align-items:center;}
+  .about-grid #about-image{aspect-ratio:5/4;border-radius:8px;}
 
   /* ============================================================
      RESPONSIVE
@@ -514,6 +515,7 @@
     .news-card .ph{aspect-ratio:16/9;}
     .news-card h3{font-size:1.08rem;}
     .about-grid{grid-template-columns:1fr;gap:1.5rem;}
+    .about-grid #about-image{aspect-ratio:16/9;}
   }
   @media(prefers-reduced-motion:reduce){
     .hero-stars .star,.hero-ufo,.hero-encounter::before{animation:none;}
