@@ -71,33 +71,6 @@ collections:
               hint: "留空時英文版會自動翻譯" }
 
   # ----------------------------------------------------------
-  # 3. 統計數字
-  # ----------------------------------------------------------
-  - name: "stats"
-    label: "📊 統計數字"
-    files:
-      - label: "首頁統計數字"
-        name: "stats"
-        file: "content/stats.json"
-        fields:
-          - { label: "會員數字", name: "members", widget: "number" }
-          - { label: "會員數字標籤", name: "memberLabel", widget: "string" }
-          - { label: "案例數字", name: "cases", widget: "number" }
-          - { label: "案例數字標籤", name: "caseLabel", widget: "string" }
-          - { label: "年資數字", name: "years", widget: "number" }
-          - { label: "年資數字標籤", name: "yearLabel", widget: "string" }
-          - { label: "合作機構數字", name: "partners", widget: "number" }
-          - { label: "合作機構標籤", name: "partnerLabel", widget: "string" }
-          - { label: "會員數字標籤（英文）", name: "memberLabel_en", widget: "string", required: false,
-              hint: "留空時英文版會自動翻譯" }
-          - { label: "案例數字標籤（英文）", name: "caseLabel_en", widget: "string", required: false,
-              hint: "留空時英文版會自動翻譯" }
-          - { label: "年資數字標籤（英文）", name: "yearLabel_en", widget: "string", required: false,
-              hint: "留空時英文版會自動翻譯" }
-          - { label: "合作機構標籤（英文）", name: "partnerLabel_en", widget: "string", required: false,
-              hint: "留空時英文版會自動翻譯" }
-
-  # ----------------------------------------------------------
   # 4. 最新消息
   # ----------------------------------------------------------
   - name: "news"

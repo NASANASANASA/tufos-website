@@ -112,21 +112,6 @@ document.addEventListener('keydown', e=>{
   });
 })();
 
-/* ---- Counter ---- */
-const counterObs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting) return;
-    const el=e.target, target=+el.dataset.target;
-    let cur=0; const step=target/60;
-    const t=setInterval(()=>{
-      cur+=step; if(cur>=target){ cur=target; clearInterval(t); }
-      el.textContent=Math.floor(cur).toLocaleString();
-    },25);
-    counterObs.unobserve(el);
-  });
-},{threshold:.4});
-document.querySelectorAll('[data-target]').forEach(el=>counterObs.observe(el));
-
 /* ============================================================
    翻譯輔助：英文版若 CMS 沒有填寫對應的「_en」欄位，
    會用免費的 MyMemory 翻譯 API 自動產生初稿（結果存在瀏覽器
@@ -201,10 +186,9 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
     ? 'ph'
     : `ph ${item && item.background ? item.background : 'ph-grid'}`;
 
-  const [hero, about, stats, news, cases, join, settings] = await Promise.all([
+  const [hero, about, news, cases, join, settings] = await Promise.all([
     fetchJson('/content/hero.json'),
     fetchJson('/content/about.json'),
-    fetchJson('/content/stats.json'),
     fetchJson('/content/news.json'),
     fetchJson('/content/cases.json'),
     fetchJson('/content/join.json'),
@@ -248,23 +232,6 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
       aboutImg.style.backgroundImage = `url('${about.image}')`;
       aboutImg.style.backgroundSize = 'cover';
       aboutImg.style.backgroundPosition = 'center';
-    }
-  }
-
-  /* ---- Stats ---- */
-  if(stats){
-    const map = [
-      ['stat-members','members','stat-members-label','memberLabel'],
-      ['stat-cases','cases','stat-cases-label','caseLabel'],
-      ['stat-years','years','stat-years-label','yearLabel'],
-      ['stat-partners','partners','stat-partners-label','partnerLabel'],
-    ];
-    for(const [numId, numKey, labelId, labelKey] of map){
-      const el = document.getElementById(numId);
-      el.dataset.target = stats[numKey] || 0;
-      el.textContent = '0';
-      document.getElementById(labelId).textContent = await field(stats, labelKey);
-      counterObs.observe(el);
     }
   }
 

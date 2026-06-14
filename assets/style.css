@@ -212,14 +212,6 @@
   .news-card:hover h3{color:var(--blue);}
   .news-card p{color:var(--gray);font-size:.9rem;margin-top:.5rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 
-  /* ============================================================
-     STATS BAND
-  ============================================================ */
-  #stats{background:var(--blue);color:var(--white);}
-  #stats .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding:3.5rem 0;}
-  .stat-item{border-left:3px solid var(--red);padding-left:1.4rem;}
-  .stat-num{font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:800;line-height:1;}
-  .stat-label{font-size:.85rem;color:#c4cfeb;font-weight:600;margin-top:.5rem;letter-spacing:.04em;}
 
   /* ============================================================
      CASE DATABASE
@@ -389,7 +381,6 @@
     .topics-grid{grid-template-columns:repeat(2,1fr);}
     .news-grid{grid-template-columns:1fr;}
     .news-card.large{grid-column:auto;}
-    #stats .stats-grid{grid-template-columns:1fr 1fr;gap:1.6rem;padding:2.5rem 0;}
     .cases-grid{grid-template-columns:1fr;}
     .report-layout{grid-template-columns:1fr;gap:2.5rem;}
     .report-side{position:static;}
