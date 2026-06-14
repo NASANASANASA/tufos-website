@@ -6,8 +6,37 @@
 const SITE_LANG = window.SITE_LANG || 'zh';
 
 /* ---- Mobile menu ---- */
-function toggleMobile(){ document.getElementById('mobileMenu').classList.toggle('open'); }
-function closeMobile(){ document.getElementById('mobileMenu').classList.remove('open'); }
+function toggleMobile(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.querySelector('.nav-hamburger');
+  const open = menu.classList.toggle('open');
+  if(btn) btn.setAttribute('aria-expanded', String(open));
+}
+function closeMobile(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  const btn = document.querySelector('.nav-hamburger');
+  if(btn) btn.setAttribute('aria-expanded', 'false');
+}
+
+let lastFocusedElement = null;
+function showModal(id){
+  const modal = document.getElementById(id);
+  if(!modal) return;
+  lastFocusedElement = document.activeElement;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  const focusTarget = modal.querySelector('.modal-close,button,a');
+  if(focusTarget) focusTarget.focus();
+}
+function hideModal(id){
+  const modal = document.getElementById(id);
+  if(!modal) return;
+  modal.classList.remove('open');
+  if(!document.querySelector('.modal-overlay.open')) document.body.style.overflow = '';
+  if(lastFocusedElement && typeof lastFocusedElement.focus === 'function') lastFocusedElement.focus();
+}
+function openInfoModal(id){ showModal(id); }
+function closeInfoModal(id){ hideModal(id); }
 
 /* ---- News modal：點擊新聞卡片顯示完整內容 ---- */
 function openNewsModal(i){
@@ -27,23 +56,13 @@ function openNewsModal(i){
   document.getElementById('modal-date').textContent = item.date || '';
   document.getElementById('modal-title').textContent = title || '';
   document.getElementById('modal-body').textContent = summary || '';
-  document.getElementById('news-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  showModal('news-modal');
 }
-function closeNewsModal(){
-  document.getElementById('news-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
+function closeNewsModal(){ hideModal('news-modal'); }
 
 /* ---- All news modal：「查看所有消息」彈出完整列表 ---- */
-function openAllNewsModal(){
-  document.getElementById('all-news-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeAllNewsModal(){
-  document.getElementById('all-news-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
+function openAllNewsModal(){ showModal('all-news-modal'); }
+function closeAllNewsModal(){ hideModal('all-news-modal'); }
 /* ---- Case modal：點擊案例卡片顯示完整內容 ---- */
 function openCaseModal(i){
   const data = (window.__casesData || [])[i];
@@ -62,23 +81,29 @@ function openCaseModal(i){
   document.getElementById('case-modal-meta').textContent = `${item.date||''}　${location||''}　${item.witnesses||1}${ui('人')}`;
   document.getElementById('case-modal-title').textContent = title || '';
   document.getElementById('case-modal-body').textContent = summary || '';
-  document.getElementById('case-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  const details = document.getElementById('case-modal-details');
+  if(details){
+    const status = SITE_LANG === 'en' ? (item.status_en || item.status || '') : (item.status || '');
+    const source = SITE_LANG === 'en' ? (item.source_en || item.source || '') : (item.source || '');
+    const observation = SITE_LANG === 'en' ? (item.observation_en || item.observation || '') : (item.observation || '');
+    const review = SITE_LANG === 'en' ? (item.review_en || item.review || '') : (item.review || '');
+    const completeness = completenessLabel(item.completeness);
+    details.innerHTML = `
+      <div><span>${SITE_LANG==='en'?'Case ID':'案例編號'}</span><strong>${item.caseId || ''}</strong></div>
+      <div><span>${SITE_LANG==='en'?'Investigation status':'調查狀態'}</span><strong>${status}</strong></div>
+      <div><span>${SITE_LANG==='en'?'Data completeness':'資料完整度'}</span><strong>${completeness}</strong></div>
+      <div><span>${SITE_LANG==='en'?'Last updated':'最後更新'}</span><strong>${item.updated || ''}</strong></div>
+      <div class="full"><span>${SITE_LANG==='en'?'Source':'資料來源'}</span><p>${source}</p></div>
+      <div class="full"><span>${SITE_LANG==='en'?'Observation':'觀測紀錄'}</span><p>${observation}</p></div>
+      <div class="full"><span>${SITE_LANG==='en'?'Review notes':'調查說明'}</span><p>${review}</p></div>`;
+  }
+  showModal('case-modal');
 }
-function closeCaseModal(){
-  document.getElementById('case-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
+function closeCaseModal(){ hideModal('case-modal'); }
 
 /* ---- All cases modal：「查看所有案例」彈出完整列表 ---- */
-function openAllCasesModal(){
-  document.getElementById('all-cases-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeAllCasesModal(){
-  document.getElementById('all-cases-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
+function openAllCasesModal(){ showModal('all-cases-modal'); }
+function closeAllCasesModal(){ hideModal('all-cases-modal'); }
 
 document.addEventListener('keydown', e=>{
   if(e.key !== 'Escape') return;
@@ -86,6 +111,7 @@ document.addEventListener('keydown', e=>{
   closeAllNewsModal();
   closeCaseModal();
   closeAllCasesModal();
+  closeInfoModal('privacy-modal');
 });
 
 /* ---- Links：展開/收合更多連結 ---- */
@@ -93,74 +119,42 @@ function toggleLinksMore(){
   const list = document.getElementById('links-list');
   const btn = document.getElementById('links-more-btn');
   const expanded = list.classList.toggle('expanded');
-  btn.textContent = expanded ? ui('收合 ↑') : ui('顯示更多 →');
+  btn.textContent = expanded ? ui('收合 ↑') : ui('顯示更多 ↓');
 }
 
 /* ---- Hero：星空閃爍效果 ---- */
 (function(){
   const starBox = document.getElementById('hero-stars');
   if(!starBox) return;
-  const STAR_COUNT = 80;
+  const STAR_COUNT = 85;
   for(let i=0;i<STAR_COUNT;i++){
     const star = document.createElement('span');
-    star.className = 'star';
-    const size = (Math.random()*2 + 1).toFixed(1);
+    const isBright = Math.random() > .84;
+    star.className = isBright ? 'star star-bright' : 'star';
+    const size = (Math.random()*(isBright ? 3.2 : 2.2) + (isBright ? 1.8 : .8)).toFixed(1);
     star.style.left = (Math.random()*100) + '%';
     star.style.top = (Math.random()*100) + '%';
     star.style.width = size + 'px';
     star.style.height = size + 'px';
-    star.style.animationDuration = (Math.random()*3 + 2).toFixed(2) + 's';
-    star.style.animationDelay = (Math.random()*4).toFixed(2) + 's';
+    star.style.setProperty('--star-size', size + 'px');
+    star.style.setProperty('--star-opacity', (Math.random()*.45 + .42).toFixed(2));
+    star.style.animationDuration = (Math.random()*2.8 + 1.6).toFixed(2) + 's';
+    star.style.animationDelay = (Math.random()*4.2).toFixed(2) + 's';
     starBox.appendChild(star);
   }
 })();
 
-/* ---- Hero：滑鼠光暈 + 流星拖尾效果 ---- */
+/* ---- Hero：滑鼠光暈 ---- */
 (function(){
   const hero = document.getElementById('hero');
-  const meteorBox = document.getElementById('hero-meteors');
-  if(!hero || !meteorBox) return;
-  let lastMeteor = 0;
+  if(!hero) return;
   hero.addEventListener('mousemove', e=>{
     const rect = hero.getBoundingClientRect();
     const x = e.clientX - rect.left, y = e.clientY - rect.top;
     hero.style.setProperty('--mx', x + 'px');
     hero.style.setProperty('--my', y + 'px');
-
-    const now = Date.now();
-    if(now - lastMeteor < 60) return;
-    lastMeteor = now;
-    const meteor = document.createElement('span');
-    meteor.className = 'meteor';
-    meteor.style.left = x + 'px';
-    meteor.style.top = y + 'px';
-    meteorBox.appendChild(meteor);
-    meteor.addEventListener('animationend', ()=> meteor.remove());
   });
 })();
-
-/* ============================================================
-   翻譯輔助：英文版若 CMS 沒有填寫對應的「_en」欄位，
-   會用免費的 MyMemory 翻譯 API 自動產生初稿（結果存在瀏覽器
-   localStorage，同一段文字只會呼叫一次 API）。
-============================================================ */
-function translateText(text){
-  if(!text) return Promise.resolve(text);
-  if(SITE_LANG !== 'en') return Promise.resolve(text);
-  const cacheKey = 'tufos_tr_' + text;
-  try{
-    const cached = localStorage.getItem(cacheKey);
-    if(cached) return Promise.resolve(cached);
-  }catch(e){}
-  return fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=zh-TW|en-GB`)
-    .then(res=>res.json())
-    .then(data=>{
-      const translated = (data && data.responseData && data.responseData.translatedText) ? data.responseData.translatedText : text;
-      try{ localStorage.setItem(cacheKey, translated); }catch(e){}
-      return translated;
-    })
-    .catch(()=>text);
-}
 
 /* 將「2026.6.14」「2024.11.28」「2026年6月14日（星期日）」等日期字串轉為可比較的數字 */
 function parseDate(str){
@@ -170,13 +164,13 @@ function parseDate(str){
 }
 
 /* 取得內容欄位：中文版直接回傳；英文版優先用 `${key}_en`，
-   若該欄位為空則自動翻譯中文內容 */
+   若該欄位為空則顯示中文，避免將內容傳送至第三方翻譯服務 */
 function field(item, key){
   const zh = (item && item[key]) || '';
   if(SITE_LANG !== 'en') return Promise.resolve(zh);
   const en = item && item[key + '_en'];
   if(en) return Promise.resolve(en);
-  return translateText(zh);
+  return Promise.resolve(zh);
 }
 
 /* 固定 UI 文字（分類標籤、可信度等）中英對照 */
@@ -186,16 +180,22 @@ const UI_DICT = {
   '國際動態':'International News',
   '研究報告':'Research Reports',
   '媒體報導':'Media Coverage',
-  '高可信度':'High Credibility',
-  '中可信度':'Medium Credibility',
   '待確認':'Unverified',
+  '資料完整':'Complete',
+  '部分完整':'Partial',
+  '資料不足':'Insufficient',
   '人':' people',
   '/ 年':'/ year',
   '聯絡我們':'Contact Us',
-  '顯示更多 →':'Show More →',
+  '顯示更多 ↓':'Show More ↓',
   '收合 ↑':'Collapse ↑',
 };
 function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
+function completenessLabel(value){
+  if(value === 'complete') return ui('資料完整');
+  if(value === 'partial') return ui('部分完整');
+  return ui('資料不足');
+}
 
 /* ---- Content loader (reads /content/*.json so the site can be maintained via /admin) ---- */
 (async function loadContent(){
@@ -281,14 +281,14 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
       const i = allItems.indexOf(item);
       const {title, summary} = window.__newsData[i];
       return `
-      <a class="news-card" href="#" onclick="openNewsModal(${i});return false;">
+      <button type="button" class="news-card" onclick="openNewsModal(${i})" aria-label="${title||''}">
         <div class="${phClass(item)}" ${ph(item)}><span class="tag ${tagClass(item.category)}">${ui(item.category)||''}</span></div>
         <div class="news-body">
           <div class="news-date">${item.date||''}</div>
           <h3>${title||''}</h3>
           <p>${summary||''}</p>
         </div>
-      </a>`;
+      </button>`;
     }).join('');
 
     const listEl = document.getElementById('news-list');
@@ -296,12 +296,12 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
       listEl.innerHTML = allItems.map((item,i)=>{
         const {title, summary} = window.__newsData[i];
         return `
-        <a class="news-list-item" href="#" onclick="closeAllNewsModal();openNewsModal(${i});return false;">
+        <button type="button" class="news-list-item" onclick="closeAllNewsModal();openNewsModal(${i})">
           <span class="tag ${tagClass(item.category)}">${ui(item.category)||''}</span>
           <div class="news-date">${item.date||''}</div>
           <h4>${title||''}</h4>
           <p>${summary||''}</p>
-        </a>`;
+        </button>`;
       }).join('');
     }
   }
@@ -310,37 +310,72 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
   if(cases && Array.isArray(cases.items)){
     const grid = document.getElementById('cases-grid');
     const allItems = [...cases.items].sort((a,b)=>parseDate(b.date)-parseDate(a.date));
-    const gridItems = allItems.slice(0,4);
 
     window.__casesData = await Promise.all(allItems.map(async item=>{
       const [title, summary, location] = await Promise.all([field(item,'title'), field(item,'summary'), field(item,'location')]);
       return {item, title, summary, location};
     }));
 
-    grid.innerHTML = gridItems.map(item=>{
+    const caseCard = (item)=>{
       const i = allItems.indexOf(item);
       const {title, summary, location} = window.__casesData[i];
+      const status = SITE_LANG === 'en' ? (item.status_en || item.status || '') : (item.status || '');
       return `
-      <a class="case-card" href="#" onclick="openCaseModal(${i});return false;">
+      <button type="button" class="case-card" onclick="openCaseModal(${i})" aria-label="${title||''}">
         <div class="${phClass(item)}" ${ph(item)}></div>
         <div class="case-body">
+          <div class="case-topline"><span>${item.caseId||''}</span><span class="case-status">${status}</span></div>
           <h3>${title||''}</h3>
           <p>${summary||''}</p>
-          <div class="case-meta"><span>${item.date||''}</span><span>${location||''}</span><span>${item.witnesses||1}${ui('人')}</span></div>
+          <div class="case-meta"><span>${item.date||''}</span><span>${location||''}</span><span>${completenessLabel(item.completeness)}</span></div>
         </div>
-      </a>`;
-    }).join('');
+      </button>`;
+    };
+
+    const search = document.getElementById('case-search');
+    const locationFilter = document.getElementById('case-location');
+    const yearFilter = document.getElementById('case-year');
+    const statusFilter = document.getElementById('case-status');
+    const reset = document.getElementById('case-reset');
+    const resultsMeta = document.getElementById('case-results-meta');
+
+    const unique = (values)=>[...new Set(values.filter(Boolean))].sort();
+    unique(window.__casesData.map(d=>d.location)).forEach(value=>locationFilter.add(new Option(value,value)));
+    unique(allItems.map(item=>String(item.date||'').slice(0,4))).sort().reverse().forEach(value=>yearFilter.add(new Option(value,value)));
+    unique(allItems.map(item=>SITE_LANG === 'en' ? (item.status_en || item.status) : item.status)).forEach(value=>statusFilter.add(new Option(value,value)));
+
+    const renderCases = ()=>{
+      const query = (search.value || '').trim().toLowerCase();
+      const filtered = allItems.filter(item=>{
+        const i = allItems.indexOf(item);
+        const data = window.__casesData[i];
+        const status = SITE_LANG === 'en' ? (item.status_en || item.status || '') : (item.status || '');
+        const haystack = [item.caseId,data.title,data.location,data.summary].join(' ').toLowerCase();
+        return (!query || haystack.includes(query))
+          && (!locationFilter.value || data.location === locationFilter.value)
+          && (!yearFilter.value || String(item.date||'').startsWith(yearFilter.value))
+          && (!statusFilter.value || status === statusFilter.value);
+      });
+      grid.innerHTML = filtered.map(caseCard).join('') || `<p class="case-empty">${SITE_LANG==='en'?'No cases match these filters.':'沒有符合篩選條件的案例。'}</p>`;
+      resultsMeta.textContent = SITE_LANG==='en' ? `${filtered.length} cases` : `共 ${filtered.length} 筆案例`;
+    };
+    [search,locationFilter,yearFilter,statusFilter].forEach(el=>el.addEventListener(el === search ? 'input' : 'change',renderCases));
+    reset.addEventListener('click',()=>{
+      search.value=''; locationFilter.value=''; yearFilter.value=''; statusFilter.value=''; renderCases();
+    });
+    renderCases();
 
     const listEl = document.getElementById('cases-list');
     if(listEl){
       listEl.innerHTML = allItems.map((item,i)=>{
         const {title, summary, location} = window.__casesData[i];
+        const status = SITE_LANG === 'en' ? (item.status_en || item.status || '') : (item.status || '');
         return `
-        <a class="news-list-item" href="#" onclick="closeAllCasesModal();openCaseModal(${i});return false;">
-          <div class="news-date">${item.date||''}　${location||''}　${item.witnesses||1}${ui('人')}</div>
+        <button type="button" class="news-list-item" onclick="closeAllCasesModal();openCaseModal(${i})">
+          <div class="news-date">${item.caseId||''}　${item.date||''}　${location||''}　${status}</div>
           <h4>${title||''}</h4>
           <p>${summary||''}</p>
-        </a>`;
+        </button>`;
       }).join('');
     }
   }

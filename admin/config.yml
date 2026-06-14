@@ -1,6 +1,6 @@
 # ============================================================
 # Decap CMS 設定檔
-# 台灣飛碟學會官網（NASA風格版）內容管理系統
+# 台灣飛碟學會官網（研究機構版）內容管理系統
 # ============================================================
 
 backend:
@@ -12,7 +12,8 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 # 網站預覽網址
-site_url: https://kaleidoscopic-tiramisu-7502e9.netlify.app
+site_url: https://taiwanufosociety.netlify.app
+display_url: https://taiwanufosociety.netlify.app
 
 # ============================================================
 # 內容集合定義
@@ -39,11 +40,11 @@ collections:
           - { label: "背景照片", name: "image", widget: "image", required: false,
               hint: "上傳後將取代背景漸層樣式" }
           - { label: "標籤文字（英文）", name: "tag_en", widget: "string", required: false,
-              hint: "留空時英文版會自動翻譯" }
+              hint: "留空時英文版會顯示中文" }
           - { label: "標題（英文）", name: "title_en", widget: "string", required: false,
-              hint: "留空時英文版會自動翻譯" }
+              hint: "留空時英文版會顯示中文" }
           - { label: "說明文字（英文）", name: "description_en", widget: "text", required: false,
-              hint: "留空時英文版會自動翻譯" }
+              hint: "留空時英文版會顯示中文" }
 
   # ----------------------------------------------------------
   # 2. 學會簡介
@@ -64,11 +65,11 @@ collections:
           - { label: "學會照片", name: "image", widget: "image", required: false,
               hint: "上傳後將顯示在簡介旁，未上傳則顯示背景漸層樣式" }
           - { label: "標題（英文）", name: "heading_en", widget: "string", required: false,
-              hint: "留空時英文版會自動翻譯" }
+              hint: "留空時英文版會顯示中文" }
           - { label: "簡介段落一（英文）", name: "paragraph1_en", widget: "text", required: false,
-              hint: "留空時英文版會自動翻譯" }
+              hint: "留空時英文版會顯示中文" }
           - { label: "簡介段落二（英文）", name: "paragraph2_en", widget: "text", required: false,
-              hint: "留空時英文版會自動翻譯" }
+              hint: "留空時英文版會顯示中文" }
 
   # ----------------------------------------------------------
   # 4. 最新消息
@@ -98,9 +99,9 @@ collections:
               - { label: "置頂顯示", name: "featured", widget: "boolean", default: false,
                   hint: "開啟後此消息將顯示在最上方大圖區塊" }
               - { label: "標題（英文）", name: "title_en", widget: "string", required: false,
-                  hint: "留空時英文版會自動翻譯" }
+                  hint: "留空時英文版會顯示中文" }
               - { label: "摘要（英文）", name: "summary_en", widget: "text", required: false,
-                  hint: "留空時英文版會自動翻譯" }
+                  hint: "留空時英文版會顯示中文" }
 
   # ----------------------------------------------------------
   # 5. 目擊案例資料庫
@@ -118,31 +119,43 @@ collections:
             label_key: "title"
             fields:
               - { label: "案例標題", name: "title", widget: "string" }
+              - { label: "案例編號", name: "caseId", widget: "string", hint: "例：TUFOS-2026-001" }
               - { label: "目擊日期", name: "date", widget: "string", hint: "例：2024.11.28" }
+              - { label: "最後更新", name: "updated", widget: "string", hint: "例：2026.06.14" }
               - { label: "目擊地點", name: "location", widget: "string" }
+              - { label: "資料來源", name: "source", widget: "string" }
               - { label: "目擊人數", name: "witnesses", widget: "number", default: 1 }
-              - label: "可信度"
-                name: "credibility"
+              - label: "資料完整度"
+                name: "completeness"
                 widget: "select"
                 options:
-                  - label: "🔴 高可信度"
-                    value: "high"
-                  - label: "🟡 中可信度"
-                    value: "mid"
-                  - label: "🟢 待確認"
-                    value: "low"
+                  - label: "資料完整"
+                    value: "complete"
+                  - label: "部分完整"
+                    value: "partial"
+                  - label: "資料不足"
+                    value: "insufficient"
               - { label: "案例摘要", name: "summary", widget: "text" }
+              - { label: "調查狀態", name: "status", widget: "string", default: "待確認" }
+              - { label: "觀測紀錄", name: "observation", widget: "text",
+                  hint: "客觀描述目擊內容、持續時間與移動方式" }
+              - { label: "調查說明", name: "review", widget: "text",
+                  hint: "記錄已比對與仍需排除的可能來源" }
               - { label: "背景樣式", name: "background", widget: "select",
                   options: ["ph-nebula", "ph-aurora", "ph-sunset", "ph-deepsky", "ph-grid", "ph-tech"],
                   hint: "尚未上傳照片時顯示的背景漸層樣式" }
               - { label: "照片", name: "image", widget: "image", required: false,
                   hint: "上傳後將取代背景漸層樣式" }
               - { label: "案例標題（英文）", name: "title_en", widget: "string", required: false,
-                  hint: "留空時英文版會自動翻譯" }
+                  hint: "留空時英文版會顯示中文" }
               - { label: "案例摘要（英文）", name: "summary_en", widget: "text", required: false,
-                  hint: "留空時英文版會自動翻譯" }
+                  hint: "留空時英文版會顯示中文" }
               - { label: "目擊地點（英文）", name: "location_en", widget: "string", required: false,
-                  hint: "留空時英文版會自動翻譯" }
+                  hint: "留空時英文版會顯示中文" }
+              - { label: "資料來源（英文）", name: "source_en", widget: "string", required: false }
+              - { label: "調查狀態（英文）", name: "status_en", widget: "string", required: false }
+              - { label: "觀測紀錄（英文）", name: "observation_en", widget: "text", required: false }
+              - { label: "調查說明（英文）", name: "review_en", widget: "text", required: false }
 
   # ----------------------------------------------------------
   # 6. 加入學會相簿
@@ -180,9 +193,9 @@ collections:
               - { label: "網址", name: "url", widget: "string", hint: "例：https://www.nasa.gov" }
               - { label: "網站簡介", name: "description", widget: "text" }
               - { label: "網站名稱（英文）", name: "name_en", widget: "string", required: false,
-                  hint: "留空時英文版會自動翻譯" }
+                  hint: "留空時英文版會顯示中文" }
               - { label: "網站簡介（英文）", name: "description_en", widget: "text", required: false,
-                  hint: "留空時英文版會自動翻譯" }
+                  hint: "留空時英文版會顯示中文" }
 
   # ----------------------------------------------------------
   # 8. 網站設定
@@ -204,6 +217,6 @@ collections:
           - { label: "目擊通報區公告", name: "alert", widget: "text", required: false,
               hint: "顯示在「目擊通報系統」區塊的提示文字，留空則不顯示" }
           - { label: "頁尾簡介文字（英文）", name: "footerDescription_en", widget: "text", required: false,
-              hint: "留空時英文版會自動翻譯" }
+              hint: "留空時英文版會顯示中文" }
           - { label: "目擊通報區公告（英文）", name: "alert_en", widget: "text", required: false,
-              hint: "留空時英文版會自動翻譯" }
+              hint: "留空時英文版會顯示中文" }
