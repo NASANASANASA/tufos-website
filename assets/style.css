@@ -454,6 +454,8 @@
     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
   }
 
+  .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:3.5rem;align-items:center;}
+
   /* ============================================================
      RESPONSIVE
   ============================================================ */
@@ -511,6 +513,7 @@
     #hero .hero-btns .btn{justify-content:center;width:100%;padding:.85rem 1rem;}
     .news-card .ph{aspect-ratio:16/9;}
     .news-card h3{font-size:1.08rem;}
+    .about-grid{grid-template-columns:1fr;gap:1.5rem;}
   }
   @media(prefers-reduced-motion:reduce){
     .hero-stars .star,.hero-ufo,.hero-encounter::before{animation:none;}
