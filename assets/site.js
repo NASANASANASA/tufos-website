@@ -34,7 +34,21 @@ function closeNewsModal(){
   document.getElementById('news-modal').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeNewsModal(); });
+
+/* ---- All news modal：「查看所有消息」彈出完整列表 ---- */
+function openAllNewsModal(){
+  document.getElementById('all-news-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAllNewsModal(){
+  document.getElementById('all-news-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e=>{
+  if(e.key !== 'Escape') return;
+  closeNewsModal();
+  closeAllNewsModal();
+});
 
 /* ---- Hero：滑鼠光暈 + 流星拖尾效果 ---- */
 (function(){
@@ -212,13 +226,20 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
   /* ---- News ---- */
   if(news && Array.isArray(news.items)){
     const grid = document.getElementById('news-grid');
-    const featured = news.items.find(n=>n.featured) || news.items[0];
-    const rest = news.items.filter(n=>n!==featured).slice(0,4);
+    const allItems = news.items;
+    const featured = allItems.find(n=>n.featured) || allItems[0];
+    const rest = allItems.filter(n=>n!==featured);
+    const gridItems = [featured, ...rest].filter(Boolean).slice(0,5);
     const tagClass = (cat) => (cat==='國際動態' || cat==='媒體報導') ? 'tag-red' : 'tag-blue';
-    window.__newsData = [];
-    const card = async (item, i) => {
+
+    window.__newsData = await Promise.all(allItems.map(async item=>{
       const [title, summary] = await Promise.all([field(item,'title'), field(item,'summary')]);
-      window.__newsData[i] = {item, title, summary};
+      return {item, title, summary};
+    }));
+
+    grid.innerHTML = gridItems.map(item=>{
+      const i = allItems.indexOf(item);
+      const {title, summary} = window.__newsData[i];
       return `
       <a class="news-card" href="#" onclick="openNewsModal(${i});return false;">
         <div class="${phClass(item)}" ${ph(item)}><span class="tag ${tagClass(item.category)}">${ui(item.category)||''}</span></div>
@@ -226,9 +247,21 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
         <h3>${title||''}</h3>
         <p>${summary||''}</p>
       </a>`;
-    };
-    const cards = await Promise.all([featured, ...rest].filter(Boolean).map((item,i)=>card(item,i)));
-    grid.innerHTML = cards.join('');
+    }).join('');
+
+    const listEl = document.getElementById('news-list');
+    if(listEl){
+      listEl.innerHTML = allItems.map((item,i)=>{
+        const {title, summary} = window.__newsData[i];
+        return `
+        <a class="news-list-item" href="#" onclick="closeAllNewsModal();openNewsModal(${i});return false;">
+          <span class="tag ${tagClass(item.category)}">${ui(item.category)||''}</span>
+          <div class="news-date">${item.date||''}</div>
+          <h4>${title||''}</h4>
+          <p>${summary||''}</p>
+        </a>`;
+      }).join('');
+    }
   }
 
   /* ---- Cases ---- */
@@ -292,6 +325,7 @@ function scrollToHashTarget(hash, behavior = 'smooth'){
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', e=>{
     const hash = a.getAttribute('href');
+    if(!hash || hash === '#') return;
     const t=document.querySelector(hash);
     if(t){
       e.preventDefault();

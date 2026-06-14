@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Taiwan UFO Society (TUFOS)</title>
 <meta name="description" content="Taiwan UFO Society — scientific research into UFO phenomena, sighting reports, and a global research network.">
-<link rel="icon" type="image/png" href="/images/uploads/tufos-logo.png">
+<link rel="icon" type="image/jpeg" href="/images/uploads/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
@@ -31,7 +31,7 @@
 <header id="header">
   <div class="wrap">
     <a href="#" class="logo">
-      <img src="/images/uploads/tufos-logo.png" alt="TUFOS">
+      <img src="/images/uploads/logo.jpg" alt="TUFOS">
       <span class="logo-text">Taiwan UFO Society<small>台灣飛碟學會</small></span>
     </a>
     <nav class="nav-links">
@@ -80,7 +80,7 @@
         <div class="eyebrow">LATEST UPDATES</div>
         <h2>Latest News</h2>
       </div>
-      <a href="#" class="link-more">View All News →</a>
+      <a href="#" class="link-more" onclick="openAllNewsModal();return false;">View All News →</a>
     </div>
     <div class="news-grid fade-up" id="news-grid"></div>
   </div>
@@ -224,9 +224,9 @@
         </div>
       </div>
       <div class="join-gallery">
-        <div class="ph" style="background-image:url('/images/uploads/join.jpg');background-size:cover;background-position:center;"></div>
-        <div class="ph" style="background-image:url('/images/uploads/member2.jpg');background-size:cover;background-position:center;"></div>
-        <div class="ph" style="background-image:url('/images/uploads/20230612.jpg');background-size:cover;background-position:center;"></div>
+        <div class="ph" style="background-image:url('/images/event/join.jpg');background-size:cover;background-position:center;"></div>
+        <div class="ph" style="background-image:url('/images/event/member2.jpg');background-size:cover;background-position:center;"></div>
+        <div class="ph" style="background-image:url('/images/event/20230612.jpg');background-size:cover;background-position:center;"></div>
       </div>
     </div>
   </div>
@@ -238,7 +238,7 @@
     <div class="footer-top">
       <div>
         <div class="footer-brand">
-          <img src="/images/uploads/tufos-logo.png" alt="TUFOS">
+          <img src="/images/uploads/logo.jpg" alt="TUFOS">
           <div class="ft-title">Taiwan UFO Society<small>台灣飛碟學會 · EST. 1993</small></div>
         </div>
         <p id="footer-desc">Dedicated to the scientific research and documentation of UFO phenomena, connecting researchers worldwide to explore the mysteries of the universe. All information on this site is for research purposes only and does not represent any political position.</p>
@@ -287,6 +287,15 @@
     <div class="modal-date" id="modal-date"></div>
     <h3 id="modal-title"></h3>
     <p id="modal-body"></p>
+  </div>
+</div>
+
+<!-- ===== ALL NEWS MODAL ===== -->
+<div class="modal-overlay" id="all-news-modal" onclick="if(event.target===this) closeAllNewsModal()">
+  <div class="modal-box modal-box-wide">
+    <button class="modal-close" onclick="closeAllNewsModal()" aria-label="Close">&times;</button>
+    <h3 style="margin-bottom:1.4rem;">Latest News</h3>
+    <div class="news-list" id="news-list"></div>
   </div>
 </div>
 

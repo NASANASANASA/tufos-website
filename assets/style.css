@@ -133,7 +133,7 @@
     height:76px;
   }
   .logo{display:flex;align-items:center;gap:.8rem;}
-  .logo img{width:46px;height:46px;}
+  .logo img{width:50px;height:50px;object-fit:contain;}
   .logo .logo-text{font-weight:800;font-size:1.05rem;line-height:1.25;}
   .logo .logo-text small{display:block;font-size:.68rem;font-weight:600;letter-spacing:.1em;color:var(--gray);}
   .nav-links{display:flex;gap:2.2rem;align-items:center;}
@@ -284,7 +284,7 @@
     padding:4rem 0 3rem;border-bottom:1px solid rgba(255,255,255,.12);
   }
   footer .footer-brand{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem;}
-  footer .footer-brand img{width:42px;height:42px;}
+  footer .footer-brand img{width:46px;height:46px;object-fit:contain;}
   footer .footer-brand .ft-title{color:var(--white);font-weight:800;font-size:1.05rem;}
   footer .footer-brand .ft-title small{display:block;font-size:.7rem;font-weight:600;letter-spacing:.08em;color:#aebbdc;}
   footer .footer-col h5{color:var(--white);font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.1rem;}
@@ -324,6 +324,21 @@
   .modal-date{font-size:.78rem;color:var(--gray);font-weight:600;letter-spacing:.05em;margin-bottom:.4rem;}
   .modal-box h3{font-size:1.4rem;font-weight:800;line-height:1.4;margin-bottom:.8rem;}
   .modal-box p{color:var(--gray);font-size:.95rem;line-height:1.9;white-space:pre-line;}
+  .modal-box-wide{max-width:800px;}
+  .news-list{display:flex;flex-direction:column;}
+  .news-list-item{
+    display:block;text-decoration:none;padding:1.4rem 0;border-top:1px solid var(--line);
+    position:relative;
+  }
+  .news-list-item:first-child{border-top:none;padding-top:0;}
+  .news-list-item .tag{position:static;display:inline-block;margin-bottom:.5rem;}
+  .news-list-item .news-date{margin-bottom:.3rem;}
+  .news-list-item h4{font-size:1.05rem;font-weight:700;line-height:1.4;transition:.2s;margin-bottom:.3rem;}
+  .news-list-item:hover h4{color:var(--blue);}
+  .news-list-item p{
+    color:var(--gray);font-size:.88rem;line-height:1.7;white-space:normal;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
 
   /* ============================================================
      RESPONSIVE
