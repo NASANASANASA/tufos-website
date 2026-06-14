@@ -515,7 +515,7 @@
     .news-card .ph{aspect-ratio:16/9;}
     .news-card h3{font-size:1.08rem;}
     .about-grid{grid-template-columns:1fr;gap:1.5rem;}
-    .about-grid #about-image{aspect-ratio:16/9;}
+    .about-grid #about-image{max-height:340px;}
   }
   @media(prefers-reduced-motion:reduce){
     .hero-stars .star,.hero-ufo,.hero-encounter::before{animation:none;}
