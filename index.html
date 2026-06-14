@@ -147,6 +147,20 @@
         <h2 style="font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:800;margin-bottom:1rem;">目擊通報系統</h2>
         <p>您的目擊報告對研究至關重要。所有資料將嚴格保密，僅供學會研究團隊分析使用。</p>
         <div class="alert-box" id="report-alert" style="display:none;"></div>
+        <div class="report-steps">
+          <div class="report-step">
+            <div class="report-step-num">1</div>
+            <div><h5>填寫表單</h5><p>詳細描述目擊的時間、地點與現象細節，並可附上相關照片或影片。</p></div>
+          </div>
+          <div class="report-step">
+            <div class="report-step-num">2</div>
+            <div><h5>學會審核</h5><p>研究團隊將初步審閱您提供的資料，必要時會透過聯絡方式與您確認細節。</p></div>
+          </div>
+          <div class="report-step">
+            <div class="report-step-num">3</div>
+            <div><h5>收錄資料庫</h5><p>確認後將納入案例資料庫，作為後續研究與分析的參考依據。</p></div>
+          </div>
+        </div>
       </div>
       <form class="report-form fade-up" name="ufo-report" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" onsubmit="submitReport(event)">
         <input type="hidden" name="form-name" value="ufo-report">

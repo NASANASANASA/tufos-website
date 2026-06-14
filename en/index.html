@@ -147,6 +147,20 @@
         <h2 style="font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:800;margin-bottom:1rem;">Sighting Report System</h2>
         <p>Your sighting report is vital to our research. All information will be kept strictly confidential and used only for analysis by our research team.</p>
         <div class="alert-box" id="report-alert" style="display:none;"></div>
+        <div class="report-steps">
+          <div class="report-step">
+            <div class="report-step-num">1</div>
+            <div><h5>Fill in the Form</h5><p>Describe the time, location, and details of your sighting, with optional photos or videos.</p></div>
+          </div>
+          <div class="report-step">
+            <div class="report-step-num">2</div>
+            <div><h5>Review by Researchers</h5><p>Our research team will review your report and may contact you for further details if needed.</p></div>
+          </div>
+          <div class="report-step">
+            <div class="report-step-num">3</div>
+            <div><h5>Added to the Database</h5><p>Once confirmed, your report will be added to our case database for further research and analysis.</p></div>
+          </div>
+        </div>
       </div>
       <form class="report-form fade-up" name="ufo-report" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" onsubmit="submitReport(event)">
         <input type="hidden" name="form-name" value="ufo-report">
