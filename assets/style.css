@@ -289,6 +289,9 @@
      LINKS（相關網站連結）
   ============================================================ */
   .links-list{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+  .links-list .link-row:nth-child(n+7){display:none;}
+  .links-list.expanded .link-row:nth-child(n+7){display:flex;}
+  .links-more{display:flex;justify-content:center;margin-top:2rem;}
   .link-row{display:flex;flex-direction:column;gap:.5rem;padding:1.4rem 1.6rem;text-decoration:none;color:inherit;background:var(--white);border:1px solid var(--line);border-radius:6px;transition:.2s;}
   .link-row:hover{box-shadow:0 12px 28px rgba(0,0,0,.08);transform:translateY(-4px);}
   .link-name{font-size:1.05rem;font-weight:800;color:var(--blue);display:flex;align-items:center;gap:.4rem;}

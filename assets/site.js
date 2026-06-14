@@ -88,6 +88,14 @@ document.addEventListener('keydown', e=>{
   closeAllCasesModal();
 });
 
+/* ---- Links：展開/收合更多連結 ---- */
+function toggleLinksMore(){
+  const list = document.getElementById('links-list');
+  const btn = document.getElementById('links-more-btn');
+  const expanded = list.classList.toggle('expanded');
+  btn.textContent = expanded ? ui('收合 ↑') : ui('顯示更多 →');
+}
+
 /* ---- Hero：星空閃爍效果 ---- */
 (function(){
   const starBox = document.getElementById('hero-stars');
@@ -184,6 +192,8 @@ const UI_DICT = {
   '人':' people',
   '/ 年':'/ year',
   '聯絡我們':'Contact Us',
+  '顯示更多 →':'Show More →',
+  '收合 ↑':'Collapse ↑',
 };
 function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
 
@@ -358,6 +368,9 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
         </a>`;
       }));
       list.innerHTML = rows.join('');
+
+      const more = document.getElementById('links-more');
+      if(more) more.style.display = links.items.length > 6 ? 'flex' : 'none';
     }
   }
 
