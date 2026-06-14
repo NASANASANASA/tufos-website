@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "name": "NASA",
+      "url": "https://www.nasa.gov",
+      "description": "美國國家航空暨太空總署，提供太空任務、天文觀測與科學研究的第一手資訊。",
+      "name_en": "NASA",
+      "description_en": "NASA — official source for space missions, astronomy, and scientific research."
+    },
+    {
+      "name": "ESA 歐洲太空總署",
+      "url": "https://www.esa.int",
+      "description": "歐洲各國共同推動的太空科技與探索計畫，涵蓋火星探測、太空站等任務。",
+      "name_en": "ESA",
+      "description_en": "European Space Agency — Europe's gateway to space exploration missions."
+    },
+    {
+      "name": "SETI Institute",
+      "url": "https://www.seti.org",
+      "description": "搜尋地外文明計畫，致力於尋找宇宙中智慧生命存在的證據與訊號。",
+      "name_en": "SETI Institute",
+      "description_en": "Dedicated to the search for extraterrestrial intelligence and life in the universe."
+    },
+    {
+      "name": "MUFON",
+      "url": "https://mufon.com",
+      "description": "Mutual UFO Network，全球規模最大的民間UFO目擊調查與研究組織。",
+      "name_en": "MUFON",
+      "description_en": "Mutual UFO Network — one of the world's largest UFO investigation organizations."
+    },
+    {
+      "name": "NUFORC",
+      "url": "https://nuforc.org",
+      "description": "National UFO Reporting Center，美國民間UFO目擊事件回報與資料庫。",
+      "name_en": "NUFORC",
+      "description_en": "National UFO Reporting Center — a database of civilian UFO sighting reports."
+    }
+  ]
+}

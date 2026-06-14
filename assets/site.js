@@ -186,12 +186,13 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
     ? 'ph'
     : `ph ${item && item.background ? item.background : 'ph-grid'}`;
 
-  const [hero, about, news, cases, join, settings] = await Promise.all([
+  const [hero, about, news, cases, join, links, settings] = await Promise.all([
     fetchJson('/content/hero.json'),
     fetchJson('/content/about.json'),
     fetchJson('/content/news.json'),
     fetchJson('/content/cases.json'),
     fetchJson('/content/join.json'),
+    fetchJson('/content/links.json'),
     fetchJson('/content/settings.json'),
   ]);
 
@@ -320,6 +321,22 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
       const photos = join.photos.filter(p=>p && p.image);
       const slide = (p)=>`<div class="ph" style="background-image:url('${p.image}');background-size:cover;background-position:center;"></div>`;
       track.innerHTML = photos.map(slide).join('') + photos.map(slide).join('');
+    }
+  }
+
+  /* ---- Links：外太空探索相關網站連結（可從 CMS 編輯） ---- */
+  if(links && Array.isArray(links.items)){
+    const list = document.getElementById('links-list');
+    if(list){
+      const rows = await Promise.all(links.items.map(async item=>{
+        const [name, desc] = await Promise.all([field(item,'name'), field(item,'description')]);
+        return `
+        <a class="link-row" href="${item.url || '#'}" target="_blank" rel="noopener">
+          <div class="link-name">${name || ''}<span class="arrow">→</span></div>
+          <div class="link-desc">${desc || ''}</div>
+        </a>`;
+      }));
+      list.innerHTML = rows.join('');
     }
   }
 

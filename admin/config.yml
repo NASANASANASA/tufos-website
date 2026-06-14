@@ -162,7 +162,30 @@ collections:
               - { label: "圖片", name: "image", widget: "image" }
 
   # ----------------------------------------------------------
-  # 7. 網站設定
+  # 7. 外太空與飛碟相關連結
+  # ----------------------------------------------------------
+  - name: "links"
+    label: "🔗 相關網站連結"
+    files:
+      - label: "外太空探索與飛碟資源連結"
+        name: "links"
+        file: "content/links.json"
+        fields:
+          - label: "連結列表"
+            name: "items"
+            widget: "list"
+            label_key: "name"
+            fields:
+              - { label: "網站名稱", name: "name", widget: "string" }
+              - { label: "網址", name: "url", widget: "string", hint: "例：https://www.nasa.gov" }
+              - { label: "網站簡介", name: "description", widget: "text" }
+              - { label: "網站名稱（英文）", name: "name_en", widget: "string", required: false,
+                  hint: "留空時英文版會自動翻譯" }
+              - { label: "網站簡介（英文）", name: "description_en", widget: "text", required: false,
+                  hint: "留空時英文版會自動翻譯" }
+
+  # ----------------------------------------------------------
+  # 8. 網站設定
   # ----------------------------------------------------------
   - name: "settings"
     label: "⚙️ 網站設定"

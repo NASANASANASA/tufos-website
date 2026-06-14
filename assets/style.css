@@ -136,7 +136,7 @@
   .logo img{width:50px;height:50px;object-fit:contain;}
   .logo .logo-text{font-weight:800;font-size:1.05rem;line-height:1.25;}
   .logo .logo-text small{display:block;font-size:.68rem;font-weight:600;letter-spacing:.1em;color:var(--gray);}
-  .nav-links{display:flex;gap:2.2rem;align-items:center;}
+  .nav-links{display:flex;gap:1.7rem;align-items:center;}
   .nav-links a{font-weight:700;font-size:.92rem;padding:.4rem 0;border-bottom:3px solid transparent;transition:.2s;}
   .nav-links a:hover{border-color:var(--red);}
   .header-cta{display:flex;align-items:center;gap:1rem;}
@@ -276,6 +276,18 @@
   .join-note a{color:var(--blue);}
 
   /* ============================================================
+     LINKS（相關網站連結）
+  ============================================================ */
+  .links-list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--white);}
+  .link-row{display:grid;grid-template-columns:240px 1fr;gap:1.6rem;padding:1.2rem 1.6rem;text-decoration:none;color:inherit;border-bottom:1px solid var(--line);transition:.2s;}
+  .link-row:last-child{border-bottom:none;}
+  .link-row:hover{background:var(--bg);}
+  .link-name{font-weight:800;color:var(--blue);display:flex;align-items:center;gap:.4rem;}
+  .link-name .arrow{opacity:0;transition:.2s;}
+  .link-row:hover .link-name .arrow{opacity:1;transform:translateX(3px);}
+  .link-desc{color:var(--gray);font-size:.92rem;line-height:1.7;}
+
+  /* ============================================================
      FOOTER
   ============================================================ */
   footer{background:var(--blue-dark);color:#aebbdc;}
@@ -369,6 +381,7 @@
     .form-grid{grid-template-columns:1fr;}
     .join-info-grid{grid-template-columns:1fr;}
     .join-gallery-track .ph{flex:0 0 78vw;}
+    .link-row{grid-template-columns:1fr;gap:.4rem;}
     footer .footer-top{grid-template-columns:1fr;padding:3rem 0 2rem;}
     .section{padding:4rem 0;}
     .section-head{align-items:flex-start;margin-bottom:2rem;}
