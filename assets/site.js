@@ -201,13 +201,13 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
     ? 'ph'
     : `ph ${item && item.background ? item.background : 'ph-grid'}`;
 
-  const [hero, about, stats, news, cases, membership, settings] = await Promise.all([
+  const [hero, about, stats, news, cases, join, settings] = await Promise.all([
     fetchJson('/content/hero.json'),
     fetchJson('/content/about.json'),
     fetchJson('/content/stats.json'),
     fetchJson('/content/news.json'),
     fetchJson('/content/cases.json'),
-    fetchJson('/content/membership.json'),
+    fetchJson('/content/join.json'),
     fetchJson('/content/settings.json'),
   ]);
 
@@ -346,6 +346,16 @@ function ui(zh){ return SITE_LANG === 'en' ? (UI_DICT[zh] || zh) : zh; }
     }
   }
 
+  /* ---- Join gallery：加入學會下方相簿（可從 CMS 上傳/排序） ---- */
+  if(join && Array.isArray(join.photos)){
+    const track = document.getElementById('join-gallery-track');
+    if(track){
+      const photos = join.photos.filter(p=>p && p.image);
+      const slide = (p)=>`<div class="ph" style="background-image:url('${p.image}');background-size:cover;background-position:center;"></div>`;
+      track.innerHTML = photos.map(slide).join('') + photos.map(slide).join('');
+    }
+  }
+
   /* ---- Settings (footer / report alert) ---- */
   if(settings){
     const footerDesc = await field(settings,'footerDescription');
@@ -378,7 +388,8 @@ function scrollToHashTarget(hash, behavior = 'smooth'){
   if(!t) return;
   const header = document.getElementById('header');
   const offset = (header ? header.offsetHeight : 0) + 14;
-  const y = t.getBoundingClientRect().top + window.pageYOffset - offset;
+  const padTop = parseFloat(getComputedStyle(t).paddingTop) || 0;
+  const y = t.getBoundingClientRect().top + window.pageYOffset - offset + padTop;
   window.scrollTo({ top: Math.max(0, y), behavior });
 }
 

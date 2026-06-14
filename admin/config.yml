@@ -172,41 +172,21 @@ collections:
                   hint: "留空時英文版會自動翻譯" }
 
   # ----------------------------------------------------------
-  # 6. 會員方案
+  # 6. 加入學會相簿
   # ----------------------------------------------------------
-  - name: "membership"
-    label: "🎓 會員方案"
+  - name: "join"
+    label: "🖼️ 加入學會相簿"
     files:
-      - label: "會員方案列表"
-        name: "membership"
-        file: "content/membership.json"
+      - label: "會員活動相簿"
+        name: "join"
+        file: "content/join.json"
         fields:
-          - label: "方案列表"
-            name: "items"
+          - label: "相片"
+            name: "photos"
             widget: "list"
-            label_key: "name"
+            label_key: "image"
             fields:
-              - { label: "方案名稱", name: "name", widget: "string" }
-              - { label: "價格", name: "price", widget: "string" }
-              - { label: "計價單位", name: "period", widget: "string", default: "/ 年" }
-              - { label: "推薦方案", name: "featured", widget: "boolean", default: false }
-              - label: "權益內容"
-                name: "benefits"
-                widget: "list"
-                field: { label: "權益項目", name: "benefit", widget: "string" }
-              - { label: "按鈕文字", name: "buttonText", widget: "string" }
-              - { label: "按鈕樣式", name: "buttonStyle", widget: "select",
-                  options: ["", "btn-blue", "btn-red"], required: false }
-              - { label: "方案名稱（英文）", name: "name_en", widget: "string", required: false,
-                  hint: "留空時英文版會自動翻譯" }
-              - label: "權益內容（英文）"
-                name: "benefits_en"
-                widget: "list"
-                required: false
-                hint: "留空時英文版會自動翻譯"
-                field: { label: "權益項目（英文）", name: "benefit", widget: "string" }
-              - { label: "按鈕文字（英文）", name: "buttonText_en", widget: "string", required: false,
-                  hint: "留空時英文版會自動翻譯" }
+              - { label: "圖片", name: "image", widget: "image" }
 
   # ----------------------------------------------------------
   # 7. 網站設定
