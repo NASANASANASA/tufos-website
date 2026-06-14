@@ -182,24 +182,6 @@
     100%{transform:translate(-160px,100px) rotate(-30deg) scaleX(1);opacity:0;}
   }
 
-  /* ---- 星空裡的飛碟與外星人 ---- */
-  .hero-decor{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
-  .hero-ufo{position:absolute;top:12%;right:10%;width:9.5rem;animation:hero-ufo-float 7s ease-in-out infinite;filter:drop-shadow(0 10px 22px rgba(120,180,255,.35)) drop-shadow(0 2px 6px rgba(0,0,0,.4));}
-  .hero-ufo svg{display:block;width:100%;height:auto;}
-  .hero-alien{position:absolute;width:2.6rem;animation:hero-alien-float 5s ease-in-out infinite;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45));}
-  .hero-alien svg{display:block;width:100%;height:auto;}
-  .hero-alien-1{top:48%;right:27%;width:2.4rem;animation-delay:.3s;}
-  .hero-alien-2{top:25%;right:42%;width:1.8rem;animation-delay:1.4s;opacity:.85;}
-  .hero-alien-3{top:60%;right:5%;width:2.1rem;animation-delay:2.2s;opacity:.9;}
-  @keyframes hero-ufo-float{
-    0%,100%{transform:translateY(0) rotate(0deg);}
-    50%{transform:translateY(-14px) rotate(-3deg);}
-  }
-  @keyframes hero-alien-float{
-    0%,100%{transform:translateY(0) rotate(0deg);}
-    50%{transform:translateY(-10px) rotate(4deg);}
-  }
-
   /* ============================================================
      NEWS GRID
   ============================================================ */
@@ -391,7 +373,6 @@
     .section{padding:4rem 0;}
     .section-head{align-items:flex-start;margin-bottom:2rem;}
     #hero{height:auto;min-height:560px;max-height:none;align-items:center;padding:5rem 0 3.5rem;}
-    .hero-decor{display:none;}
     #hero .hero-content{padding:0 1.2rem;max-width:100%;}
     #hero h1{font-size:clamp(2rem,11vw,2.55rem);line-height:1.14;max-width:7.4em;overflow-wrap:break-word;}
     #hero p{font-size:1rem;line-height:1.8;max-width:100%;}
