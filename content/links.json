@@ -1,6 +1,13 @@
 {
   "items": [
     {
+      "name": "美國 UAP 公開檔案中文鏡像（籌備中）",
+      "url": "https://www.war.gov/UFO/",
+      "description": "美國政府公開 UFO／UAP 檔案的中文翻譯與索引鏡像正在建置中，目前暫時連往美國官方檔案庫。",
+      "name_en": "U.S. UAP Public Archive Chinese Mirror (Coming Soon)",
+      "description_en": "A Chinese translation and index mirror of publicly released U.S. government UFO/UAP records. This link currently opens the official U.S. archive."
+    },
+    {
       "name": "NASA",
       "url": "https://www.nasa.gov",
       "description": "美國國家航空暨太空總署，提供太空任務、天文觀測與科學研究的第一手資訊。",
