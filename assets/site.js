@@ -4,6 +4,8 @@
    window.SITE_LANG 由各頁面自行設定為 'zh' 或 'en'
 ============================================================ */
 const SITE_LANG = window.SITE_LANG || 'zh';
+const SITE_BASE = window.SITE_BASE || '/';
+const sitePath = (path='') => SITE_BASE + String(path).replace(/^\/+/, '');
 
 /* ---- Mobile menu ---- */
 function toggleMobile(){
@@ -46,7 +48,7 @@ function openNewsModal(i){
   const imgEl = document.getElementById('modal-img');
   if(item.image){
     imgEl.className = 'ph';
-    imgEl.style.backgroundImage = `url('${item.image}')`;
+    imgEl.style.backgroundImage = `url('${sitePath(item.image)}')`;
     imgEl.style.backgroundSize = 'cover';
     imgEl.style.backgroundPosition = 'center';
   } else {
@@ -71,7 +73,7 @@ function openCaseModal(i){
   const imgEl = document.getElementById('case-modal-img');
   if(item.image){
     imgEl.className = 'ph';
-    imgEl.style.backgroundImage = `url('${item.image}')`;
+    imgEl.style.backgroundImage = `url('${sitePath(item.image)}')`;
     imgEl.style.backgroundSize = 'cover';
     imgEl.style.backgroundPosition = 'center';
   } else {
@@ -209,20 +211,20 @@ function completenessLabel(value){
 
   /* 有照片時只套用 .ph（避免與 .ph-* 漸層樣式的 background 簡寫衝突），並補上完整的背景屬性 */
   const ph = (item) => item && item.image
-    ? `style="background-image:url('${item.image}');background-size:cover;background-position:center;background-repeat:no-repeat;"`
+    ? `style="background-image:url('${sitePath(item.image)}');background-size:cover;background-position:center;background-repeat:no-repeat;"`
     : '';
   const phClass = (item) => item && item.image
     ? 'ph'
     : `ph ${item && item.background ? item.background : 'ph-grid'}`;
 
   const [hero, about, news, cases, join, links, settings] = await Promise.all([
-    fetchJson('/content/hero.json'),
-    fetchJson('/content/about.json'),
-    fetchJson('/content/news.json'),
-    fetchJson('/content/cases.json'),
-    fetchJson('/content/join.json'),
-    fetchJson('/content/links.json'),
-    fetchJson('/content/settings.json'),
+    fetchJson(sitePath('content/hero.json')),
+    fetchJson(sitePath('content/about.json')),
+    fetchJson(sitePath('content/news.json')),
+    fetchJson(sitePath('content/cases.json')),
+    fetchJson(sitePath('content/join.json')),
+    fetchJson(sitePath('content/links.json')),
+    fetchJson(sitePath('content/settings.json')),
   ]);
 
   /* ---- Hero ---- */
@@ -237,7 +239,7 @@ function completenessLabel(value){
     document.getElementById('hero-desc').textContent = desc;
     if(hero.image){
       heroSection.className = 'ph';
-      heroSection.style.backgroundImage = `url('${hero.image}')`;
+      heroSection.style.backgroundImage = `url('${sitePath(hero.image)}')`;
       heroSection.style.backgroundSize = 'cover';
       heroSection.style.backgroundPosition = 'center';
       heroSection.style.backgroundRepeat = 'no-repeat';
@@ -259,7 +261,7 @@ function completenessLabel(value){
     const aboutImg = document.getElementById('about-image');
     if(about.image){
       aboutImg.className = '';
-      aboutImg.style.backgroundImage = `url('${about.image}')`;
+      aboutImg.style.backgroundImage = `url('${sitePath(about.image)}')`;
       aboutImg.style.backgroundSize = 'cover';
       aboutImg.style.backgroundPosition = 'center';
     }
@@ -385,7 +387,7 @@ function completenessLabel(value){
     const track = document.getElementById('join-gallery-track');
     if(track){
       const photos = join.photos.filter(p=>p && p.image);
-      const slide = (p)=>`<div class="ph" style="background-image:url('${p.image}');background-size:cover;background-position:center;"></div>`;
+      const slide = (p)=>`<div class="ph" style="background-image:url('${sitePath(p.image)}');background-size:cover;background-position:center;"></div>`;
       track.innerHTML = photos.map(slide).join('') + photos.map(slide).join('');
     }
   }
@@ -499,7 +501,7 @@ function submitReport(e){
   btn.disabled=true;
   btn.textContent = SITE_LANG==='en' ? 'Submitting...' : '送出中...';
   const data=new FormData(form);
-  fetch('/', { method:'POST', body:data })
+  fetch(sitePath(''), { method:'POST', body:data })
     .then(res=>{
       if(!res.ok) throw new Error('提交失敗');
       btn.textContent = SITE_LANG==='en' ? 'Submitted, thank you ✓' : '已提交，感謝您的通報 ✓';
