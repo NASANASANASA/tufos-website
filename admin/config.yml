@@ -12,8 +12,8 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 # 網站預覽網址
-site_url: https://taiwanufosociety.netlify.app
-display_url: https://taiwanufosociety.netlify.app
+site_url: https://tufos.org.tw
+display_url: https://tufos.org.tw
 
 # ============================================================
 # 內容集合定義
